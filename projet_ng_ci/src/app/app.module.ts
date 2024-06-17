@@ -8,6 +8,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
 
   ],
