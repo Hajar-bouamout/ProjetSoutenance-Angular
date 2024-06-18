@@ -1,1 +1,23 @@
-<p>connexion works!</p>
+<div class="card mt-3">
+    <form [formGroup]="loginForm" (ngSubmit)="connexion()">
+    <div class="card-header text-white bg-primary">
+        Connexion
+    </div>
+    <div class="card-body">
+        <div class="mb-3 mt-3">
+            <label for="email" class="form-label">Identifiant:</label>
+            <input type="text" class="form-control" id="email" name="email" formControlName="email">
+            <span class="text-danger" *ngIf="emailCtrl.dirty && emailCtrl.hasError('required')">email est obligatoire</span>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" formControlName="password">
+            <span class="text-danger" *ngIf="passwordCtrl.dirty && passwordCtrl.hasError('required')">Le mot passe est obligatoire</span>
+            <span class="text-danger" *ngIf="passwordCtrl.dirty && passwordCtrl.hasError('minlength')">Le mot passe doit avoir au moins 12 caractères</span>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success btn-lg"><i class="bi bi-check-lg"></i></button>
+    </div>
+    </form>
+</div>
