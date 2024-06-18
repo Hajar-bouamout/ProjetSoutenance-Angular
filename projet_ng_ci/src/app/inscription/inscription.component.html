@@ -5,7 +5,7 @@
         <label for="email">Email *</label>
         <input type="email" id="email" formControlName="email" class="form-control">
         <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)" class="text-danger">
-          <div *ngIf="emailCtrl.hasError('required')" class="required-message">Email est requis</div>
+          <div *ngIf="emailCtrl.hasError('required')" class="required-message">Le champs Email est obligatoire</div>
           <div *ngIf="emailCtrl.hasError('email')" class="required-message">Email invalide</div>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <label for="password">Mot de passe *</label>
         <input type="password" id="password" formControlName="passwordValue" class="form-control">
         <div *ngIf="passwordValueCtrl.invalid && (passwordValueCtrl.dirty || passwordValueCtrl.touched)" class="text-danger">
-          <div *ngIf="passwordValueCtrl.hasError('required')" class="required-message">Mot de passe est requis</div>
+          <div *ngIf="passwordValueCtrl.hasError('required')" class="required-message">Le Mot de passe est obligatoire</div>
         </div>
       </div>
   
@@ -24,7 +24,7 @@
         <label for="username">Nom d'utilisateur *</label>
         <input type="text" id="username" formControlName="username" class="form-control">
         <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || usernameCtrl.touched)" class="text-danger">
-          <div *ngIf="usernameCtrl.hasError('required')" class="required-message">Nom d'utilisateur est requis</div>
+          <div *ngIf="usernameCtrl.hasError('required')" class="required-message">Le Nom d'utilisateur est obligatoire</div>
         </div>
       </div>
   
@@ -33,7 +33,7 @@
         <label for="birthdate">Date de naissance *</label>
         <input type="date" id="birthdate" formControlName="birthdate" class="form-control">
         <div *ngIf="birthdateCtrl.invalid && (birthdateCtrl.dirty || birthdateCtrl.touched)" class="text-danger">
-          <div *ngIf="birthdateCtrl.hasError('required')" class="required-message">Date de naissance est requise</div>
+          <div *ngIf="birthdateCtrl.hasError('required')" class="required-message"> La Date de naissance est obligatoire</div>
         </div>
       </div>
   
