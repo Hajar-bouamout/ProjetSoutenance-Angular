@@ -1,23 +1,24 @@
-<div class="card mt-3">
-    <form [formGroup]="loginForm" (ngSubmit)="connexion()">
-    <div class="card-header text-white bg-primary">
-        Connexion
+<!-- connexion.component.html -->
+
+<form [formGroup]="loginForm" (ngSubmit)="connexion()" class="login-form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Votre adresse email">
+      <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)" class="invalid-feedback">
+        <div *ngIf="emailCtrl.hasError('required')">L'email est requis.</div>
+        <div *ngIf="emailCtrl.hasError('email')">L'email n'est pas valide.</div>
+      </div>
     </div>
-    <div class="card-body">
-        <div class="mb-3 mt-3">
-            <label for="email" class="form-label">Identifiant:</label>
-            <input type="text" class="form-control" id="email" name="email" formControlName="email">
-            <span class="text-danger" *ngIf="emailCtrl.dirty && emailCtrl.hasError('required')">email est obligatoire</span>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" formControlName="password">
-            <span class="text-danger" *ngIf="passwordCtrl.dirty && passwordCtrl.hasError('required')">Le mot passe est obligatoire</span>
-            <span class="text-danger" *ngIf="passwordCtrl.dirty && passwordCtrl.hasError('minlength')">Le mot passe doit avoir au moins 12 caractères</span>
-        </div>
+  
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" class="form-control" formControlName="password" placeholder="Votre mot de passe">
+      <div *ngIf="passwordCtrl.invalid && (passwordCtrl.dirty || passwordCtrl.touched)" class="invalid-feedback">
+        <div *ngIf="passwordCtrl.hasError('required')">Le mot de passe est requis.</div>
+        <div *ngIf="passwordCtrl.hasError('minlength')">Le mot de passe doit contenir au moins 5 caractères.</div>
+      </div>
     </div>
-    <div class="card-footer">
-        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success btn-lg"><i class="bi bi-check-lg"></i></button>
-    </div>
-    </form>
-</div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Se connecter</button>
+  </form>
+  
