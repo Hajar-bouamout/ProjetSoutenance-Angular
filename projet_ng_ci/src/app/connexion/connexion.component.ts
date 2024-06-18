@@ -14,23 +14,26 @@ export class ConnexionComponent {
   loginForm!: FormGroup;
 
   emailCtrl!: FormControl;
-  passwordCtrl!: FormControl;
+  passwordValueCtrl!: FormControl;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.emailCtrl = this.formBuilder.control("", [Validators.required, Validators.email]);
-    this.passwordCtrl = this.formBuilder.control("", [Validators.required, Validators.minLength(5)]);
+    this.passwordValueCtrl = this.formBuilder.control("", [Validators.required, Validators.minLength(12)]);
 
     this.loginForm = this.formBuilder.group({
       email: this.emailCtrl,
-      password: this.passwordCtrl
+      passwordValue: this.passwordValueCtrl
     });
   }
 
   connexion() {
+    console.log('Formulaire soumis');
     if (this.loginForm.valid) {
+      console.log('Formulaire valide, tentative de connexion...');
       try {
-        this.authService.login(this.emailCtrl.value, this.passwordCtrl.value);
+        this.authService.login(this.emailCtrl.value, this.passwordValueCtrl.value);
         // Redirection ou autre action après la connexion réussie
+        console.log('Connexion réussie');
       } catch (error) {
         // Gestion de l'erreur de connexion
         console.error("Erreur de connexion :", error);
@@ -38,6 +41,7 @@ export class ConnexionComponent {
     } else {
       // Marquer tous les champs comme touchés pour afficher les erreurs si le formulaire est invalide
       this.loginForm.markAllAsTouched();
+      console.log('Formulaire invalide, veuillez vérifier les champs');
     }
   }
 }

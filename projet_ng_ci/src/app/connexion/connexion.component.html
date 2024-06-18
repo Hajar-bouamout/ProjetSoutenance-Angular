@@ -3,19 +3,19 @@
 <form [formGroup]="loginForm" (ngSubmit)="connexion()" class="login-form">
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Votre adresse email">
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="entrer votre  adresse email">
       <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || emailCtrl.touched)" class="invalid-feedback">
-        <div *ngIf="emailCtrl.hasError('required')">L'email est requis.</div>
+        <div *ngIf="emailCtrl.hasError('required')">Ce champs est obligatoire .</div>
         <div *ngIf="emailCtrl.hasError('email')">L'email n'est pas valide.</div>
       </div>
     </div>
   
     <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" class="form-control" formControlName="password" placeholder="Votre mot de passe">
-      <div *ngIf="passwordCtrl.invalid && (passwordCtrl.dirty || passwordCtrl.touched)" class="invalid-feedback">
-        <div *ngIf="passwordCtrl.hasError('required')">Le mot de passe est requis.</div>
-        <div *ngIf="passwordCtrl.hasError('minlength')">Le mot de passe doit contenir au moins 5 caractères.</div>
+      <label for="passwordValue">Mot de passe</label>
+      <input type="passwordValue" id="passwordValue" class="form-control" formControlName="passwordValue" placeholder="Entrer votre mot de passe">
+      <div *ngIf="passwordValueCtrl.invalid && (passwordValueCtrl.dirty || passwordValueCtrl.touched)" class="invalid-feedback">
+        <div *ngIf="passwordValueCtrl.hasError('required')">Ce champs est obligatoire.</div>
+        <div *ngIf="passwordValueCtrl.hasError('minlength')">Le mot de passe doit contenir au moins 12 caractères.</div>
       </div>
     </div>
   
