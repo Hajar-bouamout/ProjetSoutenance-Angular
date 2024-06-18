@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 
 @NgModule({
@@ -17,7 +18,12 @@ import { HttpClientModule } from '@angular/common/http';
     ConnexionComponent,
     InscriptionComponent,
     NavBarComponent,
+<<<<<<< HEAD
     HomeComponent
+=======
+    HomeComponent,
+    UtilisateurComponent,
+>>>>>>> main
     
   ],
   imports: [
