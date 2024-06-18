@@ -3,7 +3,7 @@
         <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/login']" routerLinkActive="active">Connexion</a>
+        <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/connexion']" routerLinkActive="active">Connexion</a>
     </li>
 
 
@@ -12,6 +12,7 @@
     </li>
 
 
+    
     <!-- <li class="nav-item" *ngIf="isLogged()">
         <button class="nav-link" (click)="logout()">Déconnexion</button>
     </li> -->
