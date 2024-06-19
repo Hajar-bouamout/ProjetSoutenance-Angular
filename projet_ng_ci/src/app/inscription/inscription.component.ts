@@ -47,7 +47,7 @@ export class InscriptionComponent {
     this.utilisateurHttpService.register(this.inscriptionForm.value).subscribe(
       () => {
         // Redirection vers la page de connexion après l'inscription réussie
-        this.router.navigate(['/login']);
+        this.router.navigate(['/connexion']);
       },
       (error) => {
         // Gestion des erreurs en cas d'échec de l'inscription

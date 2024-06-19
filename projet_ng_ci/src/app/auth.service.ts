@@ -14,11 +14,24 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, passwordValue: string) {
-    this.http.post<Utilisateur>(environment.apiUrl + "/utilisateur/connexion", { email, "passwordValue": passwordValue }).subscribe(resp => {
-      this.utilisateur = resp;
 
+    this.http.post<Utilisateur>(environment.apiUrl + "/utilisateur/connexion", { "email": email, "passwordValue": passwordValue }).subscribe(resp => {
+
+      try{
+        console.log('--------------aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa------------');
+        this.utilisateur = resp;
+        console.log('---------yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy---------');
+      }
+      catch{
+        console.log('---------errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr---------');
+      }
+      
+      
+      //console.log(this.utilisateur.email);
+      console.log('-------------------------------------------');
       this.router.navigate(["/home"]);
     });
+ 
   }
 
   // logout() {

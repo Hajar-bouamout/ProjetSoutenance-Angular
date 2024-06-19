@@ -30,15 +30,9 @@ export class ConnexionComponent {
     console.log('Formulaire soumis');
     if (this.loginForm.valid) {
       console.log('Formulaire valide, tentative de connexion...');
-      try {
-        this.authService.login(this.emailCtrl.value, this.passwordValueCtrl.value);
-        // Redirection ou autre action après la connexion réussie
-        console.log('Connexion réussie');
-      } catch (error) {
-        // Gestion de l'erreur de connexion
-        console.error("Erreur de connexion :", error);
-      }
-    } else {
+      this.authService.login(this.emailCtrl.value, this.passwordValueCtrl.value);
+      // Redirection ou autre action après la connexion réussie
+   } else {
       // Marquer tous les champs comme touchés pour afficher les erreurs si le formulaire est invalide
       this.loginForm.markAllAsTouched();
       console.log('Formulaire invalide, veuillez vérifier les champs');
