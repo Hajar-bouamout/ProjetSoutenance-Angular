@@ -46,7 +46,7 @@ export class InscriptionComponent {
           if (error.status === 409) {
             this.errorMessage = "L'e-mail existe déjà. Veuillez en choisir un autre.";
           } else {
-            this.errorMessage = "Une erreur est survenue. Veuillez réessayer plus tard.";
+            this.errorMessage = "Une erreur est survenue. Veuillez entrer une date inférieur à la date du jour.";
           }
           console.error("Erreur d'inscription :", error);
         }

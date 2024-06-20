@@ -34,6 +34,7 @@
       <label for="birthdate">Date de naissance *</label>
       <input type="date" id="birthdate" formControlName="birthdate" class="form-control">
       <div *ngIf="birthdateCtrl.invalid && (birthdateCtrl.dirty || birthdateCtrl.touched)" class="text-danger">
+        <div *ngIf="birthdateCtrl.hasError('futureDate')" class="required-message">La Date de naissance ne peut pas être dans le futur</div>
         <div *ngIf="birthdateCtrl.hasError('required')" class="required-message">La Date de naissance est obligatoire</div>
       </div>
     </div>
