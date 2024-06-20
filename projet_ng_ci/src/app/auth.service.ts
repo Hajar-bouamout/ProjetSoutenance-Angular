@@ -17,6 +17,10 @@ export class AuthService {
   login(email: string, passwordValue: string): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(`${environment.apiUrl}/utilisateur/connexion`, { email, passwordValue });
   }
+// Méthode d'inscription
+register(email: string, passwordValue: string, username: string, birthdate: string): Observable<any> {
+  return this.http.post<any>(`${environment.apiUrl}/utilisateur/inscription`, { email, passwordValue, username, birthdate });
+}
 
   setUtilisateur(utilisateur: Utilisateur) {
     this.utilisateur = utilisateur;
