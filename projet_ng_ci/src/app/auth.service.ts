@@ -3,6 +3,7 @@ import { Utilisateur } from './model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from './environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,13 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(email: string, passwordValue: string) {
-    this.http.post<Utilisateur>(environment.apiUrl + "/utilisateur/connexion", { email, "passwordValue": passwordValue }).subscribe(resp => {
-      this.utilisateur = resp;
-
-      this.router.navigate(["/home"]);
-    });
+  login(email: string, passwordValue: string): Observable<Utilisateur> {
+    return this.http.post<Utilisateur>(`${environment.apiUrl}/utilisateur/connexion`, { email, passwordValue });
   }
 
-  // logout() {
-  //   this.utilisateur = undefined;
-  // }
+  setUtilisateur(utilisateur: Utilisateur) {
+    this.utilisateur = utilisateur;
+  }
 
   isLogged(): boolean {
     return this.utilisateur != undefined;

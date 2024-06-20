@@ -30,4 +30,13 @@
     font-size: 12px;
     margin-top: 5px;
   }
+
+  .error {
+    color: red;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
   
