@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UtilisateurHttpService } from '../utilisateur/utilisateur-http.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'inscription',
+  selector: 'app-inscription',
   templateUrl: './inscription.component.html',
-  styleUrl: './inscription.component.css'
+  styleUrls: ['./inscription.component.css'] // Correction ici
 })
-export class InscriptionComponent {
-
+export class InscriptionComponent implements OnInit {
 
   // Déclaration du formulaire réactif
   inscriptionForm!: FormGroup;
@@ -28,11 +27,11 @@ export class InscriptionComponent {
 
   ngOnInit(): void {
     // Initialisation des contrôleurs de formulaire avec les validateurs requis
-    this.emailCtrl = this.formBuilder.control("", Validators.required);
-    this.passwordValueCtrl = this.formBuilder.control("", Validators.required);
-    this.usernameCtrl = this.formBuilder.control("", Validators.required);
-    this.birthdateCtrl = this.formBuilder.control("", Validators.required);
-
+    this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
+    this.passwordValueCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(6)]);
+    this.usernameCtrl = this.formBuilder.control('', Validators.required);
+    this.birthdateCtrl = this.formBuilder.control('', Validators.required);
+  
     // Création du formulaire réactif avec les contrôleurs définis
     this.inscriptionForm = this.formBuilder.group({
       email: this.emailCtrl,
@@ -41,23 +40,28 @@ export class InscriptionComponent {
       birthdate: this.birthdateCtrl
     });
   }
-
   // Fonction appelée lors de la soumission du formulaire d'inscription
   inscription() {
-    this.utilisateurHttpService.register(this.inscriptionForm.value).subscribe(
-      () => {
-        // Redirection vers la page de connexion après l'inscription réussie
-        this.router.navigate(['/login']);
-      },
-      (error) => {
-        // Gestion des erreurs en cas d'échec de l'inscription
-        console.error("Erreur lors de l'inscription :", error);
-        // Afficher un message d'erreur à l'utilisateur ou prendre une autre action appropriée
-      }
-    );
+    if (this.inscriptionForm.invalid) {
+      console.error("Formulaire d'inscription invalide");
+      return;
+    }
+
+    this.utilisateurHttpService.register(this.inscriptionForm.value)
+      .subscribe({
+        next: () => {
+          console.log('Inscription réussie');
+          this.router.navigate(['/connexion']); // Redirection vers la page de connexion après inscription réussie
+        },
+        error: (error) => {
+          console.error("Erreur lors de l'inscription :", error);
+          // Gestion des erreurs ici, affichage de messages d'erreur à l'utilisateur, etc.
+          // Vous pouvez également utiliser catchError pour gérer les erreurs RxJS
+          // catchError est utilisé pour intercepter l'erreur
+        }
+      });
   }
 }
-
 // Classe statique pour les validateurs personnalisés
 export class CustomValidators {
 

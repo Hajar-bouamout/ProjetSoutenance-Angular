@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, passwordValue: string) {
-    this.http.post<Utilisateur>(environment.apiUrl + "/utilisateur/connexion", { email, "passwordValue": passwordValue }).subscribe(resp => {
+    this.http.post<Utilisateur>(environment.apiUrl + "/utilisateur/connexion", {email, passwordValue }).subscribe(resp => {
       this.utilisateur = resp;
 
       this.router.navigate(["/home"]);

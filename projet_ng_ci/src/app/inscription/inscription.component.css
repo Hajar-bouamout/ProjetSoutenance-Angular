@@ -1,54 +1,62 @@
 .container {
-    width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  .input-error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 5px;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .form-control:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px #007bff;
-  }
-  
-  .required-message {
-    font-size: 0.9em;
-  }
-  
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input-error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1em;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ajouté pour garantir que la largeur de l'entrée reste cohérente */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ajouté une ombre plus subtile */
+}
+
+.required-message {
+  font-size: 0.9em;
+  color: red; /* Ajouté pour s'assurer que les messages obligatoires sont en rouge */
+}
+
+.text-danger {
+  color: red;
+}
