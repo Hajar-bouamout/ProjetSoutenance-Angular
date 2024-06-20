@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { CompteComponent } from './compte/compte.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     InscriptionComponent,
     NavBarComponent,
     HomeComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    CompteComponent
 
     
   ],
