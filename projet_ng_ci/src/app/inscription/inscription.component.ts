@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UtilisateurHttpService } from '../utilisateur/utilisateur-http.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'inscription',
@@ -9,31 +10,20 @@ import { Router } from '@angular/router';
   styleUrl: './inscription.component.css'
 })
 export class InscriptionComponent {
-
-
-  // Déclaration du formulaire réactif
   inscriptionForm!: FormGroup;
 
-  // Déclaration des contrôleurs de formulaire individuels
   emailCtrl!: FormControl;
   passwordValueCtrl!: FormControl;
   usernameCtrl!: FormControl;
   birthdateCtrl!: FormControl;
+  errorMessage: string = '';
 
-  constructor(
-    private utilisateurHttpService: UtilisateurHttpService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+    this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
+    this.passwordValueCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(12)]);
+    this.usernameCtrl = this.formBuilder.control('', [Validators.required]);
+    this.birthdateCtrl = this.formBuilder.control('', [Validators.required]);
 
-  ngOnInit(): void {
-    // Initialisation des contrôleurs de formulaire avec les validateurs requis
-    this.emailCtrl = this.formBuilder.control("", Validators.required);
-    this.passwordValueCtrl = this.formBuilder.control("", Validators.required);
-    this.usernameCtrl = this.formBuilder.control("", Validators.required);
-    this.birthdateCtrl = this.formBuilder.control("", Validators.required);
-
-    // Création du formulaire réactif avec les contrôleurs définis
     this.inscriptionForm = this.formBuilder.group({
       email: this.emailCtrl,
       passwordValue: this.passwordValueCtrl,
@@ -42,35 +32,27 @@ export class InscriptionComponent {
     });
   }
 
-  // Fonction appelée lors de la soumission du formulaire d'inscription
   inscription() {
-    this.utilisateurHttpService.register(this.inscriptionForm.value).subscribe(
-      () => {
-        // Redirection vers la page de connexion après l'inscription réussie
-        this.router.navigate(['/connexion']);
-      },
-      (error) => {
-        // Gestion des erreurs en cas d'échec de l'inscription
-        console.error("Erreur lors de l'inscription :", error);
-        // Afficher un message d'erreur à l'utilisateur ou prendre une autre action appropriée
-      }
-    );
-  }
-}
-
-// Classe statique pour les validateurs personnalisés
-export class CustomValidators {
-
-  // ValidatorFn pour vérifier si deux champs correspondent
-  static MatchValidator(source: string, target: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const sourceCtrl = control.get(source);
-      const targetCtrl = control.get(target);
-
-      // Retourne une erreur si les champs ne correspondent pas
-      return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
-        ? { mismatch: true }
-        : null;
-    };
-  }
-}
+    console.log('Formulaire soumis');
+    if (this.inscriptionForm.valid) {
+      console.log('Formulaire valide, tentative d\'inscription...');
+      const { email, passwordValue, username, birthdate } = this.inscriptionForm.value;
+      this.authService.register(email, passwordValue, username, birthdate).subscribe({
+        next: (response) => {
+          console.log('Inscription réussie', response);
+          this.router.navigate(['/connexion']); // Redirigez vers la page de connexion
+        },
+        error: (error) => {
+          if (error.status === 409) {
+            this.errorMessage = "L'e-mail existe déjà. Veuillez en choisir un autre.";
+          } else {
+            this.errorMessage = "Une erreur est survenue. Veuillez réessayer plus tard.";
+          }
+          console.error("Erreur d'inscription :", error);
+        }
+      });
+    } else {
+      this.inscriptionForm.markAllAsTouched();
+      console.log('Formulaire invalide, veuillez vérifier les champs');
+    }
+  }}
