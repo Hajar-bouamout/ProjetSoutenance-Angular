@@ -35,7 +35,7 @@ export class ConnexionComponent {
       this.authService.login(this.emailCtrl.value, this.passwordValueCtrl.value).subscribe({
         next: (response: any) => {
           console.log('Connexion réussie', response);
-          this.router.navigate(['/home']); // Redirigez vers la page d'accueil ou une autre page
+          this.router.navigate(['/compte']); // Redirigez vers la page d'accueil ou une autre page
         },
         error: (error: { status: number; }) => {
           if (error.status === 404) {

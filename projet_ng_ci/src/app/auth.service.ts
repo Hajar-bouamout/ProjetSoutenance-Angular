@@ -12,6 +12,8 @@ export class AuthService {
 
   private utilisateur?: Utilisateur = undefined;
 
+  private idUser?: string;
+
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, passwordValue: string): Observable<Utilisateur> {
@@ -26,6 +28,16 @@ register(email: string, passwordValue: string, username: string, birthdate: stri
     this.utilisateur = utilisateur;
   }
 
+
+   // Méthode pour récupérer l'ID de l'utilisateur connecté
+   getIdUtilisateur(): string | undefined {
+    return this.idUser;
+  }
+
+  // Méthode pour définir l'ID de l'utilisateur connecté
+  setIdUtilisateur(id: string): void {
+    this.idUser = id;
+  }
   isLogged(): boolean {
     return this.utilisateur != undefined;
   }
