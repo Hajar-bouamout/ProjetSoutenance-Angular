@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UtilisateurHttpService } from '../utilisateur/utilisateur-http.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-inscription',
@@ -15,12 +16,13 @@ export class InscriptionComponent implements OnInit {
   passwordValueCtrl!: FormControl;
   usernameCtrl!: FormControl;
   birthdateCtrl!: FormControl;
+  errorMessage: string = '';
 
-  constructor(
-    private utilisateurHttpService: UtilisateurHttpService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+    this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
+    this.passwordValueCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(12)]);
+    this.usernameCtrl = this.formBuilder.control('', [Validators.required]);
+    this.birthdateCtrl = this.formBuilder.control('', [Validators.required]);
 
   ngOnInit(): void {
     this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);

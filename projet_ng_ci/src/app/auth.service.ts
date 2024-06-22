@@ -3,6 +3,7 @@ import { Utilisateur } from './model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from './environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import { environment } from './environments/environment';
 export class AuthService {
 
   private utilisateur?: Utilisateur = undefined;
+
+  private idUser?: string;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -61,6 +64,15 @@ export class AuthService {
   //   this.router.navigate(['/login']);
   // }
 
+   // Méthode pour récupérer l'ID de l'utilisateur connecté
+   getIdUtilisateur(): string | undefined {
+    return this.idUser;
+  }
+
+  // Méthode pour définir l'ID de l'utilisateur connecté
+  setIdUtilisateur(id: string): void {
+    this.idUser = id;
+  }
   isLogged(): boolean {
     return this.utilisateur != undefined;
   }
