@@ -8,8 +8,10 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { CompteListComponent } from './compte-list/compte-list.component';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     InscriptionComponent,
     NavBarComponent,
     HomeComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    CompteListComponent
 
     
   ],

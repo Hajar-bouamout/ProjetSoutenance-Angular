@@ -1,0 +1,16 @@
+<div *ngIf="comptes.length > 0">
+    <h2>Liste des comptes de l'utilisateur</h2>
+    <ul>
+      <li *ngFor="let compte of comptes">
+        <p>{{ compte.platformName }}</p>
+        <p>{{ compte.platformDescription }}</p>
+        <!-- Affichez d'autres propriétés de compte selon vos besoins -->
+        <button (click)="editCompte(compte)">Modifier</button>
+        <button (click)="deleteCompte(compte.id)">Supprimer</button>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="comptes.length === 0">
+    <p>Aucun compte trouvé pour cet utilisateur.</p>
+  </div>
+  
