@@ -1,0 +1,27 @@
+create-compte.component.html
+<div class="create-compte-container">
+  <h2>Créer un nouveau compte</h2>
+  <form [formGroup]="createCompteForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="platformName">Nom de la plateforme</label>
+      <input id="platformName" formControlName="platformName" type="text">
+    </div>
+    <div class="form-group">
+      <label for="platformDescription">Description de la plateforme</label>
+      <textarea id="platformDescription" formControlName="platformDescription"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" formControlName="username" type="text">
+    </div>
+    <div class="form-group">
+      <label for="urlAdress">Adresse URL</label>
+      <input id="urlAdress" formControlName="urlAdress" type="text">
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input id="password" formControlName="password" type="password">
+    </div>
+    <button type="submit" class="create-button">Créer</button>
+  </form>
+</div>
