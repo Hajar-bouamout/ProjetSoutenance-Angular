@@ -18,17 +18,17 @@ export class InscriptionComponent implements OnInit {
   birthdateCtrl!: FormControl;
   errorMessage: string = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder, 
+    private utilisateurHttpService: UtilisateurHttpService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
     this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
     this.passwordValueCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(12)]);
     this.usernameCtrl = this.formBuilder.control('', [Validators.required]);
     this.birthdateCtrl = this.formBuilder.control('', [Validators.required]);
-
-  ngOnInit(): void {
-    this.emailCtrl = this.formBuilder.control('', [Validators.required, Validators.email]);
-    this.passwordValueCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(6)]);
-    this.usernameCtrl = this.formBuilder.control('', Validators.required);
-    this.birthdateCtrl = this.formBuilder.control('', Validators.required);
 
     this.inscriptionForm = this.formBuilder.group({
       email: this.emailCtrl,
@@ -41,20 +41,20 @@ export class InscriptionComponent implements OnInit {
   inscription() {
     if (this.inscriptionForm.invalid) {
       console.error("Formulaire d'inscription invalide");
+      this.errorMessage = "Veuillez vérifier les champs du formulaire.";
       return;
     }
 
-    this.utilisateurHttpService.register(this.inscriptionForm.value)
-      .subscribe({
-        next: () => {
-          console.log('Inscription réussie');
-          this.router.navigate(['/connexion']);
-        },
-        error: (error) => {
-          console.error("Erreur lors de l'inscription :", error);
-          // Gestion des erreurs ici
-        }
-      });
+    this.utilisateurHttpService.register(this.inscriptionForm.value).subscribe({
+      next: () => {
+        console.log('Inscription réussie');
+        this.router.navigate(['/connexion']);
+      },
+      error: (error) => {
+        console.error("Erreur lors de l'inscription :", error);
+        this.errorMessage = "Erreur lors de l'inscription. Veuillez réessayer.";
+      }
+    });
   }
 }
 
