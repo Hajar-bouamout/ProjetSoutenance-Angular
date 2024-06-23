@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CompteService } from '../compte.service';
 import { Router } from '@angular/router';
+import { CompteService } from '../compte.service';
 import { CreateCompteRequest } from '../model';
-
 
 @Component({
   selector: 'app-create-compte',
@@ -13,6 +12,7 @@ import { CreateCompteRequest } from '../model';
 export class CreateCompteComponent {
   createCompteForm: FormGroup;
   errorMessage: string | undefined;
+  suggestedPassword: string | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,11 +37,20 @@ export class CreateCompteComponent {
       this.compteService.createCompte(createRequest).subscribe({
         next: () => {
           console.log('Compte créé avec succès');
-          this.router.navigate(['/compte']);
+          this.router.navigate(['/compte/ajout']);
         },
         error: (err) => {
           console.error('Erreur lors de la création du compte', err);
-          this.errorMessage = 'Erreur lors de la création du compte : ' + (err.error?.message || 'Une erreur interne est survenue.');
+          if (err.status === 400) {
+            // Cas où le mot de passe n'est pas assez fort
+            this.errorMessage = err.error;
+            if (err.error.includes('Mot de passe suggéré')) {
+              const suggestedPassword = err.error.split(': ')[1].trim();
+              this.suggestedPassword = suggestedPassword;
+            }
+          } else {
+            this.errorMessage = 'Une erreur est survenue lors de la création du compte.';
+          }
         }
       });
     } else {
