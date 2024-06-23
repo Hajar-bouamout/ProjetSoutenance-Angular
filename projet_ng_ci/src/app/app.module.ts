@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { CompteListComponent } from './compte-list/compte-list.component';
 import { CreateCompteComponent } from './create-compte/create-compte.component';
+import { PasswordComponent } from './password/password.component';
 
 
 
@@ -24,7 +25,8 @@ import { CreateCompteComponent } from './create-compte/create-compte.component';
     HomeComponent,
     UtilisateurComponent,
     CompteListComponent,
-    CreateCompteComponent
+    CreateCompteComponent,
+    PasswordComponent
 
     
   ],
