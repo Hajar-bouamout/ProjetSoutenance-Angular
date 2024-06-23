@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CompteResponse } from '../model';
 import { CompteService } from './compte.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,11 +12,12 @@ import { AuthService } from '../auth.service';
 export class CompteListComponent implements OnInit {
   idUser: string | undefined;
   comptes: CompteResponse[] = [];
-  router: any;
+ 
 
   constructor(
     private compteService: CompteService,
     private authService: AuthService,
+    private router: Router
   ){}
 
 
@@ -68,7 +69,7 @@ ngOnInit(): void {
   }
 }
 createCompte(): void {
-  this.router.navigate(['/compte/creation']);
+  this.router.navigate(['/compte/ajout']);
 }
 
 editCompte(compte: CompteResponse): void {

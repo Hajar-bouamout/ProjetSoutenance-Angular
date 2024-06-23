@@ -1,5 +1,11 @@
 <div *ngIf="comptes.length > 0">
+  
   <h2>Liste des comptes de l'utilisateur</h2>
+
+  <div class ="compte-actions">
+    <button (click)="createCompte()" class="create-button">Ajouter un compte</button>
+  </div>
+
   <div class="compte-list">
     <div class="compte-card" *ngFor="let compte of comptes">
       <div class="compte-info">
@@ -20,5 +26,5 @@
 </div>
 <div *ngIf="comptes.length === 0">
   <p>Aucun compte trouvé pour cet utilisateur.</p>
-  <button (click)="createCompte()" class="create-button">Créer un compte</button>
+  <button (click)="createCompte()" class="create-button">Ajouter un compte</button>
 </div>

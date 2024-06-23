@@ -41,10 +41,12 @@ export class CompteService {
     return this.http.get<CompteResponse>(`${this.baseUrl}/${id}`);
   }
 
+  // createCompte(request: CreateCompteRequest): Observable<string> {
+  //   return this.http.post<string>(`${this.baseUrl}/ajout`, request);
+  // }
   createCompte(request: CreateCompteRequest): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/ajout`, request);
   }
-
   decryptPassword(compteId: string): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/decryptPassword`, { compteId });
   }
