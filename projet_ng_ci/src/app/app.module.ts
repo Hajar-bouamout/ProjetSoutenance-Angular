@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { CompteListComponent } from './compte-list/compte-list.component';
+import { CreateCompteComponent } from './create-compte/create-compte.component';
 
 
 
@@ -22,7 +23,8 @@ import { CompteListComponent } from './compte-list/compte-list.component';
     NavBarComponent,
     HomeComponent,
     UtilisateurComponent,
-    CompteListComponent
+    CompteListComponent,
+    CreateCompteComponent
 
     
   ],

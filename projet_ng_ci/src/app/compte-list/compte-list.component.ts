@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class CompteListComponent implements OnInit {
   idUser: string | undefined;
   comptes: CompteResponse[] = [];
+  router: any;
 
   constructor(
     private compteService: CompteService,
@@ -65,6 +66,9 @@ ngOnInit(): void {
   } else {
     console.error('Aucun utilisateur connecté');
   }
+}
+createCompte(): void {
+  this.router.navigate(['/compte/creation']);
 }
 
 editCompte(compte: CompteResponse): void {

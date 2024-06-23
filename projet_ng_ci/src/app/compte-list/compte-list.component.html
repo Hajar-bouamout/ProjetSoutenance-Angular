@@ -1,16 +1,24 @@
 <div *ngIf="comptes.length > 0">
-    <h2>Liste des comptes de l'utilisateur</h2>
-    <ul>
-      <li *ngFor="let compte of comptes">
-        <p>{{ compte.platformName }}</p>
-        <p>{{ compte.platformDescription }}</p>
-        <!-- Affichez d'autres propriétés de compte selon vos besoins -->
-        <button (click)="editCompte(compte)">Modifier</button>
-        <button (click)="deleteCompte(compte.id)">Supprimer</button>
-      </li>
-    </ul>
+  <h2>Liste des comptes de l'utilisateur</h2>
+  <div class="compte-list">
+    <div class="compte-card" *ngFor="let compte of comptes">
+      <div class="compte-info">
+        <h3>{{ compte.platformName }}</h3>
+        <p><strong>Description:</strong> {{ compte.platformDescription }}</p>
+        <p><strong>Date de création:</strong> {{ compte.creationDate | date }}</p>
+        <p><strong>Date de mise à jour:</strong> {{ compte.updateDate | date }}</p>
+        <p><strong>Adresse URL:</strong> <a href="{{ compte.urlAdress }}" target="_blank">{{ compte.urlAdress }}</a></p>
+        <p><strong>Nom d'utilisateur:</strong> {{ compte.username }}</p>
+        <p><strong>ID:</strong> {{ compte.id }}</p>
+      </div>
+      <div class="compte-actions">
+        <button (click)="editCompte(compte)" class="edit-button">Modifier</button>
+        <button (click)="deleteCompte(compte.id)" class="delete-button">Supprimer</button>
+      </div>
+    </div>
   </div>
-  <div *ngIf="comptes.length === 0">
-    <p>Aucun compte trouvé pour cet utilisateur.</p>
-  </div>
-  
+</div>
+<div *ngIf="comptes.length === 0">
+  <p>Aucun compte trouvé pour cet utilisateur.</p>
+  <button (click)="createCompte()" class="create-button">Créer un compte</button>
+</div>
