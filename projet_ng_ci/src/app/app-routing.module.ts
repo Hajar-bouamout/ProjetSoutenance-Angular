@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { CompteListComponent } from './compte-list/compte-list.component';
 import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { NotesComponent } from './notes/notes.component';
+import { EditnoteComponent } from './editnote/editnote.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
  { path: 'create-compte', component: CreateCompteComponent },
   { path: '', redirectTo: '/compte', pathMatch: 'full' },
   { path: 'notes', component: NotesComponent },
-
+  { path: 'edit-note/:id', component: EditnoteComponent },
 
 ];
 

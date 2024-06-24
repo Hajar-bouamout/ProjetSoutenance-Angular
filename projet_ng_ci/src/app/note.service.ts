@@ -17,10 +17,14 @@ export class NoteService {
   getNotesByUser(idUser: string): Observable<Note[]> {
     return this.http.get<Note[]>(`${this.apiUrl}/note/utilisateur/${idUser}`);
   }
-  updateNote(noteId: string, note: Note): Observable<Note> {
-    const url = `${this.apiUrl}/note/${noteId}`; // Endpoint de l'API pour mettre à jour une note
-    return this.http.put<Note>(url, note);
+  updateNote(id: string, note: Note): Observable<Note> {
+    return this.http.put<Note>(`${this.apiUrl}/note/${id}`, note);
   }
+  getNoteById(id: string): Observable<Note> {
+    return this.http.get<Note>(`${this.apiUrl}/${id}`);
+  }
+
+  
 
   deleteNote(noteId: string): Observable<void> {
     const url = `${this.apiUrl}/note/${noteId}`;
