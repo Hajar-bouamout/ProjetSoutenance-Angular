@@ -7,8 +7,9 @@ import { AuthService } from '../auth.service';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
+  utilisateur: undefined;
   
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
 
   }
 
@@ -16,4 +17,7 @@ export class NavBarComponent {
     return this.authService.isLogged();
   }
 
+  logout(): void {
+    this.authService.logout();
+  }
 }
