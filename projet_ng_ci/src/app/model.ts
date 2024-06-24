@@ -49,14 +49,20 @@ export class Note {
     public description?: string;
     public dateAjout?: Date;
     public dateModif?: Date;
+    public contenu?: String;
+    public idUser?: string;
+     public publicKey?: string;
     
-    constructor(id?: string, nom?: string, description?: string, dateAjout?: Date,  dateModif?: Date) {
+    constructor(id?: string, nom?: string, description?: string, dateAjout?: Date,  dateModif?: Date , contenu?: string ,idUser?: string ,publicKey?: string ) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.dateAjout = dateAjout;
         this.dateModif = dateModif;
-    
+         this.contenu= contenu;
+         this.publicKey=publicKey;
+         this.idUser =idUser;
+
     }
 
  

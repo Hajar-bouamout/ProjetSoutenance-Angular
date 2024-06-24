@@ -1,29 +1,21 @@
 <ul class="nav nav-pills mt-3">
-    <li class="nav-item" >
-        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Accueil</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/connexion']" routerLinkActive="active">Connexion</a>
+      <a class="nav-link" *ngIf="!authService.isLogged()" [routerLink]="['/connexion']" routerLinkActive="active">Connexion</a>
     </li>
-
-
-<li class="nav-item">
-    <a class="nav-link" *ngIf="isLogged()" [routerLink]="['/compte']" routerLinkActive="active">Compte</a>
-</li>
     <li class="nav-item">
-        <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
+      <a class="nav-link" *ngIf="authService.isLogged()" [routerLink]="['/compte']" routerLinkActive="active">Compte</a>
     </li>
-
-<!-- 
     <li class="nav-item">
-        <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/compte']" routerLinkActive="active">Compte</a>
-    </li> -->
-
-
-    
-    <!-- <li class="nav-item" *ngIf="isLogged()">
-        <button class="nav-link" (click)="logout()">Déconnexion</button>
-    </li> -->
-
-
-</ul>
+      <a class="nav-link" *ngIf="!authService.isLogged()" [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" *ngIf="authService.isLogged()" [routerLink]="['/notes']" routerLinkActive="active">Note</a>
+    </li>
+    <li class="nav-item" *ngIf="authService.isLogged()">
+      <button class="nav-link" (click)="logout()">Déconnexion</button>
+    </li>
+  </ul>
+  

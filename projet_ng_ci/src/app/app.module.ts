@@ -13,7 +13,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { CompteListComponent } from './compte-list/compte-list.component';
 import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { PasswordComponent } from './password/password.component';
-import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
+import { NotesComponent } from './notes/notes.component';
 
 
 
@@ -28,7 +28,7 @@ import { RequestResetPasswordComponent } from './request-reset-password/request-
     CompteListComponent,
     CreateCompteComponent,
     PasswordComponent,
-    RequestResetPasswordComponent
+    NotesComponent
 
     
   ],
