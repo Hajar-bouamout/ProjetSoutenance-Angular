@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Note } from '../model';
 import { NoteService } from '../note.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,10 +8,17 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './editnote.component.html',
   styleUrl: './editnote.component.css'
 })
-export class EditnoteComponent {
-
-  note: Note = new Note();
-  id?: string;
+export class EditnoteComponent implements OnInit  {
+  id: string = ''; // Assurez-vous que l'ID est initialisé avec une chaîne vide pour éviter les problèmes d'initialisation
+  note: Note = {
+    nom: '',
+    description: '',
+    dateAjout: new Date(),
+    dateModif: new Date(),
+    contenu: '',
+    idUser: '',
+    publicKey: ''
+  };
 
   constructor(
     private noteService: NoteService,
@@ -20,31 +27,52 @@ export class EditnoteComponent {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.id = id;
-      this.noteService.getNoteById(this.id).subscribe(
-        data => this.note = data,
-        error => console.error('Erreur lors de la récupération de la note', error)
-      );
+    const idFromRoute = this.route.snapshot.paramMap.get('id');
+    if (idFromRoute) {
+      this.id = idFromRoute; // Assurez-vous que l'ID est assigné uniquement si idFromRoute n'est pas null
+      console.log('ID de la note à modifier :', this.id);
+      // Charger les détails de la note à modifier
+      this.loadNote();
     } else {
-      console.error('ID de la note non trouvé dans la route');
-      // Rediriger ou gérer ce cas comme vous le souhaitez
+      console.error('Aucun ID trouvé dans les paramètres de l\'URL.');
+      // Gérer le cas où l'ID n'est pas présent dans l'URL
     }
   }
 
-  onSubmit() {
+  loadNote(): void {
     if (this.id) {
-      this.noteService.updateNote(this.id, this.note).subscribe(
-        updatedNote => {
+      this.noteService.getNoteById(this.id).subscribe(
+        (note) => {
+          this.note = note;
+        },
+        (error) => {
+          console.error('Erreur lors du chargement de la note', error);
+        }
+      );
+    }
+  }
+
+  updatePartiel(): void {
+    if (this.id) { // Vérifiez que l'ID est défini avant de continuer
+      const changes: Partial<Note> = {
+        nom: this.note.nom,
+        description: this.note.description,
+        contenu: this.note.contenu,
+        dateModif: new Date() // Mettre à jour la date de modification
+      };
+
+      this.noteService.updatePartielle(this.id, changes).subscribe(
+        (updatedNote) => {
           console.log('Note mise à jour avec succès', updatedNote);
           this.router.navigate(['/notes']);
         },
-        error => console.error('Erreur lors de la mise à jour de la note', error)
+        (error) => {
+          console.error('Erreur lors de la mise à jour de la note', error);
+        }
       );
     } else {
-      console.error('ID de la note non défini');
-      // Gérer ce cas comme vous le souhaitez
+      console.error('ID de la note non défini.');
+      // Gérer le cas où l'ID n'est pas défini (normalement, ce cas ne devrait pas se produire si bien géré dans ngOnInit())
     }
   }
 }
