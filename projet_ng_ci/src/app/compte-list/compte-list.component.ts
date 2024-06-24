@@ -22,28 +22,6 @@ export class CompteListComponent implements OnInit {
 
 
 
-//   ngOnInit(): void {
-//     // Utilisation du service ici, par exemple :
-//     this.compteService.getAllComptes().subscribe(comptes => {
-//       console.log('Comptes récupérés :', comptes);
-//     });
-//   }
-
-
-
-//   editCompte(compte: CompteResponse): void {
-//     // Logique pour modifier un compte
-//     console.log('Modification du compte :', compte);
-//   }
-
-//   deleteCompte(id?: string): void {
-//     if (id) {
-//       this.compteService.deleteCompte(id).subscribe(() => {
-//         this.comptes = this.comptes.filter(compte => compte.id !== id);
-//       });
-//     }
-//   }
-// }
 
 ngOnInit(): void {
   const currentUser = this.authService.getCurrentUser();
@@ -72,8 +50,13 @@ createCompte(): void {
   this.router.navigate(['/compte/ajout']);
 }
 
+// editCompte(compte: CompteResponse): void {
+//   console.log('Modification du compte :', compte);
+// }
 editCompte(compte: CompteResponse): void {
   console.log('Modification du compte :', compte);
+  // Rediriger vers la page de modification du compte (à implémenter)
+  this.router.navigate(['/compte/update', compte.id]);
 }
 
 deleteCompte(id?: string): void {

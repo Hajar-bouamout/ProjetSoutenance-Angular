@@ -39,7 +39,7 @@ export class CompteService {
   }
 
 updateCompte(id: string, compte: CompteResponse): Observable<CompteResponse> {
-   return this.http.put<CompteResponse>(`${this.baseUrl}/${id}`, compte);
+   return this.http.put<CompteResponse>(`${this.baseUrl}/update/${id}`, compte);
   }
 
    deleteCompte(id: string): Observable<void> {
