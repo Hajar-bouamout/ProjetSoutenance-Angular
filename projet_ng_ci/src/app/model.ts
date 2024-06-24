@@ -149,7 +149,7 @@ export class CreateCompteRequest{
 
 export class PasswordCheckRequest{
 
-private password?: String;
+public password?: String;
 
 constructor(password?: string){
 
@@ -158,6 +158,22 @@ constructor(password?: string){
 
 }
 
+export class ResetPasswordRequest {
+
+
+public token?: string;
+public newPassword?: string;
+
+
+constructor(token?: string , newPassword?: string){
+
+    this.token=token;
+    this.newPassword=newPassword;
+}
+
+
+
+}
 
 
 export class PasswordCheckResponse{

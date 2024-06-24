@@ -53,6 +53,10 @@ register(email: string, passwordValue: string, username: string, birthdate: stri
     return this.utilisateur != undefined;
   }
 
+
+  requestPasswordReset(email: string): Observable<string> {
+    return this.http.post<string>(`${environment.apiUrl}/password/utilisateur/request-reset`, { email });
+  }
   getUtilisateur() : Utilisateur | undefined{
     if(this.utilisateur) {
       return this.utilisateur;
