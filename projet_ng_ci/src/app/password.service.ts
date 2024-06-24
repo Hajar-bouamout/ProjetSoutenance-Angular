@@ -22,7 +22,7 @@ export class PasswordService {
     return this.http.put<void>(`${this.baseUrl}/utilisateur/update`, params);
   }
 
-  // Méthode pour obtenir le mot de passe d'un utilisateur par son ID
+  // Méthode pour obtenir le mot de passe d'un utilisateur par son IDs
   getPasswordByUserId(idUser: string): Observable<string> {
     return this.http.get<string>(`${this.baseUrl}/utilisateur/${idUser}`);
   }
@@ -34,12 +34,12 @@ export class PasswordService {
     });
   }
 
-  // Méthode pour réinitialiser le mot de passe
-  resetPassword(token: string, newPassword: string): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}/utilisateur/reset`, null, {
-      params: { token, newPassword }
-    });
-  }
+  // // Méthode pour réinitialiser le mot de passe
+  // resetPassword(token: string, newPassword: string): Observable<string> {
+  //   return this.http.post<string>(`${this.baseUrl}/utilisateur/reset`, null, {
+  //     params: { token, newPassword }
+  //   });
+  // }
 
   // Méthode pour vérifier la force du mot de passe
   // checkPasswordStrength(request: PasswordCheckRequest): Observable<PasswordCheckResponse> {
