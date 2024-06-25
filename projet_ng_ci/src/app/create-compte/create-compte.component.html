@@ -25,7 +25,7 @@
       <label for="password">Mot de passe</label>
       <input type="password" class="form-control" id="password" formControlName="password">
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!createCompteForm.valid">Créer</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!createCompteForm.valid">Ajouter</button>
   </form>
   <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
 </div>

@@ -137,15 +137,17 @@ export class CreateCompteRequest{
     public username?: string;
     public urlAdress?: string;
     public password?: string;
+    public userId?: string;
     
 
-    constructor(platformName?: string, platformDescription?: string, creationDate?: Date, username?: string, urlAdress?: string, password?: string) {
+    constructor(platformName?: string, platformDescription?: string, creationDate?: Date, username?: string, urlAdress?: string, password?: string, userId?: string) {
         this.platformName = platformName;
         this.platformDescription = platformDescription;
         this.creationDate = creationDate;
         this.username = username;
         this.urlAdress = urlAdress;
         this.password = password;
+        this.userId =  userId;
         
     
     }

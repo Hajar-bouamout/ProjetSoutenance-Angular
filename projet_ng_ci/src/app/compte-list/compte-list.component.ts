@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CompteResponse } from '../model';
-import { CompteService } from './compte.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { CompteService } from '../compte.service';
 
 @Component({
   selector: 'app-compte-list',

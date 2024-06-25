@@ -29,10 +29,17 @@ export class AuthService {
     );
   }
 
+  // getCurrentUser(): Utilisateur | undefined {
+  //   if (!this.utilisateur) {
+  //     const storedUser = localStorage.getItem('utilisateur');
+  //     this.utilisateur = storedUser ? JSON.parse(storedUser) : undefined; 
+  //   }
+  //   return this.utilisateur;
+  // }
   getCurrentUser(): Utilisateur | undefined {
     if (!this.utilisateur) {
       const storedUser = localStorage.getItem('utilisateur');
-      this.utilisateur = storedUser ? JSON.parse(storedUser) : undefined; 
+      this.utilisateur = storedUser ? JSON.parse(storedUser) : undefined;
     }
     return this.utilisateur;
   }
