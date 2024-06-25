@@ -15,6 +15,7 @@ import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { PasswordComponent } from './password/password.component';
 import { NotesComponent } from './notes/notes.component';
 import { EditnoteComponent } from './editnote/editnote.component';
+import { CompteEditComponent } from './compte-edit/compte-edit.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 
 
@@ -31,6 +32,8 @@ import { AddNoteComponent } from './add-note/add-note.component';
     CreateCompteComponent,
     PasswordComponent,
     NotesComponent,
+    EditnoteComponent,
+    CompteEditComponent
     EditnoteComponent,
     AddNoteComponent
 

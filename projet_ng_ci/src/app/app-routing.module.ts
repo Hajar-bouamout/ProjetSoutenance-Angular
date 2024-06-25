@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { CompteListComponent } from './compte-list/compte-list.component';
 import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { NotesComponent } from './notes/notes.component';
+import { CompteEditComponent } from './compte-edit/compte-edit.component';
 import { EditnoteComponent } from './editnote/editnote.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 
@@ -25,6 +26,9 @@ const routes: Routes = [
  { path: 'create-compte', component: CreateCompteComponent },
   { path: '', redirectTo: '/compte', pathMatch: 'full' },
   { path: 'notes', component: NotesComponent },
+  { path: 'compte/update/:id', component: CompteEditComponent },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/dashboard' }
   { path: 'edit-note/:id', component: EditnoteComponent },
   { path: 'add', component: AddNoteComponent },
 ];

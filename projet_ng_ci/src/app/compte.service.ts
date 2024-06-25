@@ -41,18 +41,20 @@ export class CompteService {
     return this.http.get<CompteResponse>(`${this.baseUrl}/${id}`);
   }
 
-  // createCompte(request: CreateCompteRequest): Observable<string> {
-  //   return this.http.post<string>(`${this.baseUrl}/ajout`, request);
-  // }
   createCompte(request: CreateCompteRequest): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}/ajout`, request);
+    const url = `${this.baseUrl}/ajout`;
+    return this.http.post<string>(url, request, { responseType: 'text' as 'json' }).pipe(
+      tap((response) => console.log('Réponse de création de compte :', response))
+    );
   }
   decryptPassword(compteId: string): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/decryptPassword`, { compteId });
   }
 
+  
   updateCompte(id: string, compte: CompteResponse): Observable<CompteResponse> {
-    return this.http.put<CompteResponse>(`${this.baseUrl}/${id}`, compte);
+    const url = `${this.baseUrl}/update/${id}`;
+    return this.http.put<CompteResponse>(url, compte);
   }
 
   deleteCompte(id: string): Observable<void> {
