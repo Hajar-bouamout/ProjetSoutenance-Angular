@@ -9,6 +9,7 @@ import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { NotesComponent } from './notes/notes.component';
 import { CompteEditComponent } from './compte-edit/compte-edit.component';
 import { EditnoteComponent } from './editnote/editnote.component';
+import { AddNoteComponent } from './add-note/add-note.component';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // { path: '**', redirectTo: '/dashboard' }
   { path: 'edit-note/:id', component: EditnoteComponent },
-
+  { path: 'add', component: AddNoteComponent },
 ];
 
 @NgModule({
