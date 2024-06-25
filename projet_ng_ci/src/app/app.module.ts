@@ -33,9 +33,9 @@ import { AddNoteComponent } from './add-note/add-note.component';
     PasswordComponent,
     NotesComponent,
     EditnoteComponent,
-    CompteEditComponent
+    CompteEditComponent,
     EditnoteComponent,
-    AddNoteComponent
+    AddNoteComponent,
 
     
   ],
