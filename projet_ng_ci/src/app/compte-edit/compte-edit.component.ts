@@ -26,7 +26,7 @@ export class CompteEditComponent implements OnInit {
       username: ['', Validators.required],
       urlAdress: [''],
       password: ['', [Validators.required, Validators.minLength(12)]],
-      updateDate: [new Date().toISOString().split('T')[0], Validators.required]
+      // updateDate: [new Date().toISOString().split('T')[0], Validators.required]
     });
 
     this.compteId = '';
