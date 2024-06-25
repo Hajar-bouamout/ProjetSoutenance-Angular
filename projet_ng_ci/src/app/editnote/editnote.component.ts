@@ -52,15 +52,18 @@ export class EditnoteComponent implements OnInit  {
     }
   }
 
+
+
   updatePartiel(): void {
     if (this.id) { // Vérifiez que l'ID est défini avant de continuer
       const changes: Partial<Note> = {
         nom: this.note.nom,
         description: this.note.description,
         contenu: this.note.contenu,
-        dateModif: new Date() // Mettre à jour la date de modification
+        dateModif: new Date() // Mettre à jour la date de modification côté frontend
       };
-
+  
+      // Appelez le service pour mettre à jour la note
       this.noteService.updatePartielle(this.id, changes).subscribe(
         (updatedNote) => {
           console.log('Note mise à jour avec succès', updatedNote);
@@ -68,11 +71,12 @@ export class EditnoteComponent implements OnInit  {
         },
         (error) => {
           console.error('Erreur lors de la mise à jour de la note', error);
+          // Gérer l'erreur ici selon les besoins (affichage d'un message d'erreur, etc.)
         }
       );
     } else {
       console.error('ID de la note non défini.');
-      // Gérer le cas où l'ID n'est pas défini (normalement, ce cas ne devrait pas se produire si bien géré dans ngOnInit())
+      // Gérer le cas où l'ID n'est pas défini (ceci est plus une sauvegarde, normalement bien géré dans ngOnInit())
     }
   }
 }
