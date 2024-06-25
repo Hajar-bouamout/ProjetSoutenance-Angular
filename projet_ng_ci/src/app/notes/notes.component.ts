@@ -64,6 +64,10 @@ export class NotesComponent implements OnInit {
   editNote(note: Note): void {
     this.router.navigate(['/edit-note', note.id]);
   }
+
+  navigateToAddNote(): void {
+    this.router.navigate(['/add']);
+  }
   
 }
 

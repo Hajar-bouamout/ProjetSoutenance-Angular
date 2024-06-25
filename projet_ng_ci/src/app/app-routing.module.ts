@@ -8,6 +8,7 @@ import { CompteListComponent } from './compte-list/compte-list.component';
 import { CreateCompteComponent } from './create-compte/create-compte.component';
 import { NotesComponent } from './notes/notes.component';
 import { EditnoteComponent } from './editnote/editnote.component';
+import { AddNoteComponent } from './add-note/add-note.component';
 
 
 
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/compte', pathMatch: 'full' },
   { path: 'notes', component: NotesComponent },
   { path: 'edit-note/:id', component: EditnoteComponent },
-
+  { path: 'add', component: AddNoteComponent },
 ];
 
 @NgModule({

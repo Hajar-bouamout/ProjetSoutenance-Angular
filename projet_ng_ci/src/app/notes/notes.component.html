@@ -1,4 +1,18 @@
+<style>
+  .table td {
+    max-width: 300px; /* Limite la largeur du texte à 300 pixels */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ajoute des points de suspension (...) si le texte dépasse */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  }
+</style>
+
 <div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col">
+      <button class="btn btn-success" (click)="navigateToAddNote()">Ajouter une nouvelle note</button>
+    </div>
+  </div>
   <div class="row">
     <div class="col">
       <table class="table table-striped table-hover">
@@ -10,7 +24,7 @@
             <th>Date d'ajout</th>
             <th>Date de modification</th>
             <th>Contenu</th>
-            <th>Clé publique</th>
+            <!-- <th>Clé publique</th> -->
             <th>Actions</th> 
           </tr>
         </thead>
@@ -22,9 +36,9 @@
             <td>{{ note.dateAjout }}</td>
             <td>{{ note.dateModif }}</td>
             <td>{{ note.contenu }}</td>
-            <td>{{ note.publicKey }}</td>
+            <!-- <td>{{ note.publicKey }}</td> -->
             <td>
-               <button class="btn btn-primary btn-sm" (click)="editNote(note)">modifier</button>  
+              <button class="btn btn-primary btn-sm" (click)="editNote(note)">Modifier</button>  
               <button class="btn btn-danger btn-sm" (click)="deleteNote(note)">Supprimer</button>
             </td>
           </tr>
