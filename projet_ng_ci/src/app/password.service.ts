@@ -27,24 +27,9 @@ export class PasswordService {
     return this.http.get<string>(`${this.baseUrl}/utilisateur/${idUser}`);
   }
 
-  // Méthode pour demander la réinitialisation du mot de passe
-  requestPasswordReset(email: string): Observable<string> {
-    return this.http.post<string>(`${this.baseUrl}/utilisateur/request-reset`, null, {
-      params: { email }
-    });
-  }
+  
 
-  // // Méthode pour réinitialiser le mot de passe
-  // resetPassword(token: string, newPassword: string): Observable<string> {
-  //   return this.http.post<string>(`${this.baseUrl}/utilisateur/reset`, null, {
-  //     params: { token, newPassword }
-  //   });
-  // }
-
-  // Méthode pour vérifier la force du mot de passe
-  // checkPasswordStrength(request: PasswordCheckRequest): Observable<PasswordCheckResponse> {
-  //   return this.http.post<PasswordCheckResponse>(`${this.baseUrl}/compte/check-strength`, request);
-  // }
+ 
   checkPasswordStrength(password: string): Observable<PasswordCheckResponse> {
     return this.http.post<PasswordCheckResponse>('/api/password/compte/check-strength', { password });
   }
@@ -61,7 +46,14 @@ export class PasswordService {
   generatePassword(): Observable<{ password: string }> {
     return this.http.post<{ password: string }>('/api/password/compte/generate', {});
   }
+
+
+
+
+
+
 }
+
 
 // Interfaces pour les requêtes et réponses
 
