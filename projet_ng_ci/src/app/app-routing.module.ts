@@ -10,6 +10,9 @@ import { NotesComponent } from './notes/notes.component';
 import { CompteEditComponent } from './compte-edit/compte-edit.component';
 import { EditnoteComponent } from './editnote/editnote.component';
 import { AddNoteComponent } from './add-note/add-note.component';
+import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
 
 
 
@@ -31,6 +34,10 @@ const routes: Routes = [
   // { path: '**', redirectTo: '/dashboard' }
   { path: 'edit-note/:id', component: EditnoteComponent },
   { path: 'add', component: AddNoteComponent },
+  { path: 'request-reset-password', component: RequestResetPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  
+  { path: 'reset-password-success', component: ResetPasswordSuccessComponent },
 ];
 
 @NgModule({
