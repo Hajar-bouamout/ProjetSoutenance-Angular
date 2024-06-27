@@ -47,4 +47,19 @@
     color: red;
     margin-top: 10px;
   }
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
   
+  .input-group-text {
+    cursor: pointer;
+  }
+  
+  .input-group .form-control {
+    flex: 1;
+  }
+  
+  .input-group .btn {
+    margin-left: -1px;
+  }

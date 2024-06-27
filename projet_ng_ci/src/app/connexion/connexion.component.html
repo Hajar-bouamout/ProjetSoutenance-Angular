@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="connexion()">
     <div class="form-group">
       <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email">
+      <input type="email" id="email" formControlName="email" class="form-control">
       <div *ngIf="emailCtrl.touched && emailCtrl.invalid">
         <small *ngIf="emailCtrl.errors?.['required']" class="error">L'email est requis.</small>
         <small *ngIf="emailCtrl.errors?.['email']" class="error">L'email n'est pas valide.</small>
@@ -10,7 +10,12 @@
     </div>
     <div class="form-group">
       <label for="password">Mot de passe:</label>
-      <input type="password" id="password" formControlName="passwordValue">
+      <div class="input-group">
+        <input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="passwordValue" class="form-control">
+        <button type="button" class="btn btn-outline-secondary input-group-text" (click)="togglePasswordVisibility()">
+          <i class="fa" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </button>
+      </div>
       <div *ngIf="passwordValueCtrl.touched && passwordValueCtrl.invalid">
         <small *ngIf="passwordValueCtrl.errors?.['required']" class="error">Le mot de passe est requis.</small>
         <small *ngIf="passwordValueCtrl.errors?.['minlength']" class="error">Le mot de passe doit contenir au moins 12 caractères.</small>
