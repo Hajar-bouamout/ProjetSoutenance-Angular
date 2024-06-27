@@ -15,7 +15,7 @@ export class ConnexionComponent {
 
   emailCtrl!: FormControl;
   passwordValueCtrl!: FormControl;
-
+  passwordVisible: boolean = false;
   errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
@@ -27,6 +27,7 @@ export class ConnexionComponent {
       passwordValue: this.passwordValueCtrl
     });
   }
+  
 
   connexion() {
     console.log('Formulaire soumis');
@@ -52,6 +53,10 @@ export class ConnexionComponent {
       this.loginForm.markAllAsTouched();
       console.log('Formulaire invalide, veuillez vérifier les champs');
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }
 
