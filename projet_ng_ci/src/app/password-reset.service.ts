@@ -21,15 +21,6 @@ export class PasswordResetService {
     const params = new HttpParams().set('token', token).set('newPassword', newPassword);
     return this.http.post(`${this.baseUrl}/utilisateur/reset`, {}, { params, responseType: 'text' });
   }
-  // requestPasswordReset(email: string): Observable<any> {
-  //   const params = new HttpParams().set('email', email);
-  //   return this.http.post(`${this.baseUrl}/request-reset`, {}, { params });
-  // }
-
-  // resetPassword(token: string, newPassword: string): Observable<any> {
-  //   const params = new HttpParams().set('token', token).set('newPassword', newPassword);
-  //   return this.http.post(`${this.baseUrl}/reset`, {}, { params });
-  // }
-
+  
 
 }
