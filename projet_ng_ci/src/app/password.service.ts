@@ -31,7 +31,7 @@ export class PasswordService {
 
  
   checkPasswordStrength(password: string): Observable<PasswordCheckResponse> {
-    return this.http.post<PasswordCheckResponse>('/api/password/compte/check-strength', { password });
+    return this.http.post<PasswordCheckResponse>(`${this.baseUrl}/compte/check-strength`, { password });
   }
 
   // Méthode pour vérifier la vulnérabilité du mot de passe
@@ -44,7 +44,7 @@ export class PasswordService {
   //   return this.http.post<PasswordGeneratedResponse>(`${this.baseUrl}/compte/generate`, null);
   // }
   generatePassword(): Observable<{ password: string }> {
-    return this.http.post<{ password: string }>('/api/password/compte/generate', {});
+    return this.http.post<{ password: string }>(`${this.baseUrl}/compte/generate`, {});
   }
 
 
