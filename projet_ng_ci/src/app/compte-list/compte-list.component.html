@@ -1,8 +1,7 @@
-<div *ngIf="comptes.length > 0">
-  
+<!-- <div *ngIf="comptes.length > 0">
   <h2>Liste des comptes de l'utilisateur</h2>
 
-  <div class ="compte-actions">
+  <div class="compte-actions">
     <button (click)="createCompte()" class="create-button">Ajouter un compte</button>
   </div>
 
@@ -16,10 +15,58 @@
         <p><strong>Adresse URL:</strong> <a href="{{ compte.urlAdress }}" target="_blank">{{ compte.urlAdress }}</a></p>
         <p><strong>Nom d'utilisateur:</strong> {{ compte.username }}</p>
         <p><strong>ID:</strong> {{ compte.id }}</p>
+        <p><strong>Email:</strong> {{ compte.email }}</p>
+        <p><strong>Mot de passe:</strong> ********</p>
       </div>
       <div class="compte-actions">
         <button (click)="editCompte(compte)" class="edit-button">Modifier</button>
         <button (click)="deleteCompte(compte.id)" class="delete-button">Supprimer</button>
+        <button (click)="resetPassword(compte)" class="reset-button">Réinitialiser le mot de passe</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="comptes.length === 0">
+  <p>Aucun compte trouvé pour cet utilisateur.</p>
+  <button (click)="createCompte()" class="create-button">Ajouter un compte</button>
+</div> -->
+
+
+
+<div *ngIf="comptes.length > 0">
+  <h2>Liste des comptes de l'utilisateur</h2>
+
+  <div class="compte-actions">
+    <button (click)="createCompte()" class="create-button">Ajouter un compte</button>
+  </div>
+
+  <div class="compte-list">
+    <div class="compte-card" *ngFor="let compte of comptes">
+      <div class="compte-info">
+        <h3>{{ compte.platformName }}</h3>
+        <p><strong>Description:</strong> {{ compte.platformDescription }}</p>
+        <p><strong>Date de création:</strong> {{ compte.creationDate | date }}</p>
+        <p><strong>Date de mise à jour:</strong> {{ compte.updateDate | date }}</p>
+        <p><strong>Adresse URL:</strong> <a href="{{ compte.urlAdress }}" target="_blank">{{ compte.urlAdress }}</a></p>
+        <p><strong>Nom d'utilisateur:</strong> {{ compte.username }}</p>
+        <p><strong>ID:</strong> {{ compte.id }}</p>
+        <p><strong>Email:</strong> {{ compte.email }}</p>
+        <p>
+          <strong>Mot de passe:</strong>
+          <span *ngIf="compte.showPassword">{{ compte.decryptedPassword }}</span>
+          <span *ngIf="!compte.showPassword">********</span>
+          <button (click)="showPassword(compte)" class="password-button">
+            <i [ngClass]="compte.showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+          </button>
+          <button *ngIf="compte.decryptedPassword" (click)="copyPassword(compte.decryptedPassword)" class="copy-button">
+            <i class="bi bi-clipboard"></i>
+          </button>
+        </p>
+      </div>
+      <div class="compte-actions">
+        <button (click)="editCompte(compte)" class="edit-button">Modifier</button>
+        <button (click)="deleteCompte(compte.id)" class="delete-button">Supprimer</button>
+        <button (click)="resetPassword(compte)" class="reset-button">Réinitialiser le mot de passe</button>
       </div>
     </div>
   </div>

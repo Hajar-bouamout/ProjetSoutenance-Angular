@@ -1,3 +1,5 @@
+import { Subject } from "rxjs";
+
 export class Utilisateur {
     public id?: string;
     public email?: string;
@@ -29,8 +31,10 @@ export class Compte {
     public username?: string;
     public urlAdress?: string;
     public idUser?:string;
+    public decryptedPassword?:string;
+    public showPassword?:boolean;
 
-    constructor(id?:string, publicKey?: string, platformName?: string,  platformDescription?: string, creationDate?: Date, updateDate?: Date ,  username?:string ,urlAdress?:string,idUser?: string)  {
+    constructor(id?:string, publicKey?: string, platformName?: string,  platformDescription?: string, creationDate?: Date, updateDate?: Date ,  username?:string ,urlAdress?:string,idUser?: string, decryptedPassword?:string, showPassword?:boolean)  {
         this.id = id;
         this.publicKey = publicKey;
         this.platformName = platformName ;
@@ -40,6 +44,8 @@ export class Compte {
         this.username = username;
         this.urlAdress = urlAdress;
         this.idUser=idUser;
+        this.decryptedPassword = decryptedPassword;
+        this.showPassword = showPassword;
     }
 }
 
@@ -106,9 +112,12 @@ export class CompteResponse{
     public username?: string;
     public urlAdress?: string;
     public password?: string;
+    public email?: string;
+    public decryptedPassword?:string;
+    public showPassword?:boolean;
     
 
-    constructor(id?: string, platformName?: string, platformDescription?: string, creationDate?: Date,  updateDate?: Date, username?: string, urlAdress?: string, password?: string) {
+    constructor(id?: string, platformName?: string, platformDescription?: string, creationDate?: Date,  updateDate?: Date, username?: string, urlAdress?: string, password?: string, email?: string, decryptedPassword?:string, showPassword?:boolean) {
         this.id = id;
         this.platformName = platformName;
         this.platformDescription = platformDescription;
@@ -117,7 +126,10 @@ export class CompteResponse{
         this.username = username;
         this.urlAdress = urlAdress;
         this.password = password;
-        
+        this.email = email;
+        this.decryptedPassword = decryptedPassword;
+        this.showPassword = showPassword
+    
     
     }
 
@@ -186,9 +198,9 @@ constructor(token?: string , newPassword?: string){
 
 export class PasswordCheckResponse{
 
-    private isStrong?: Boolean;
-    private isVulnerable?: Boolean;
-    private message?: String;
+    public isStrong?: Boolean;
+    public isVulnerable?: Boolean;
+    public message?: String;
 
     constructor(isStrong?: Boolean, isVulnerable?: Boolean, message?: String){
         this.isStrong = isStrong;
@@ -200,7 +212,7 @@ export class PasswordCheckResponse{
 
 export class PasswordGeneratedResponse{
 
-    private password?: String;
+    public password?: string;
     
     constructor(password?: string){
     

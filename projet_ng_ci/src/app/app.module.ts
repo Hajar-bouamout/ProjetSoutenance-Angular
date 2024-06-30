@@ -20,6 +20,8 @@ import { AddNoteComponent } from './add-note/add-note.component';
 import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
+import { RequestResetPasswordAccountsComponent } from './request-reset-password-accounts/request-reset-password-accounts.component';
+import { ResetPasswordAccountsComponent } from './reset-password-accounts/reset-password-accounts.component';
 
 
 
@@ -41,6 +43,8 @@ import { ResetPasswordSuccessComponent } from './reset-password-success/reset-pa
     RequestResetPasswordComponent,
     ResetPasswordComponent,
     ResetPasswordSuccessComponent,
+    RequestResetPasswordAccountsComponent,
+    ResetPasswordAccountsComponent,
 
     
   ],
