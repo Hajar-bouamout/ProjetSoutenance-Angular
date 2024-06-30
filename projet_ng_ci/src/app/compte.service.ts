@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Compte, CompteResponse, CreateCompteRequest, PasswordCheckRequest, PasswordCheckResponse, PasswordGeneratedResponse } from './model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from './environments/environment';
 
 @Injectable({
@@ -72,4 +72,11 @@ export class CompteService {
   generatePassword(): Observable<PasswordGeneratedResponse> {
     return this.http.post<PasswordGeneratedResponse>(`${this.baseUrl}/generate`, {});
   }
-}
+
+  
+  
+getPassword(compteId: string): Observable<string> {
+  let params = new HttpParams().set('compteId', compteId);
+  return this.http.post(`${this.baseUrl}/decryptPassword`, params, { responseType: 'text' });
+
+}}

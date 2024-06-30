@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CompteResponse } from '../model';
+import { Compte, CompteResponse } from '../model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { CompteService } from '../compte.service';
@@ -66,4 +66,34 @@ deleteCompte(id?: string): void {
     });
   }
 }
+
+resetPassword(compte: CompteResponse): void {
+  this.router.navigate(['/request-reset-password'], { queryParams: { email: compte.email } });
+}
+
+showPassword(compte: Compte): void {
+  if (compte.decryptedPassword) {
+    compte.showPassword = !compte.showPassword;
+  } else {
+    this.compteService.getPassword(compte.id!).subscribe(password => {
+      compte.decryptedPassword = password;
+      compte.showPassword = true;
+    }, error => {
+      console.error('Error fetching password:', error);
+    });
+  }
+}
+
+copyPassword(password: string): void {
+  if (password) {
+    navigator.clipboard.writeText(password).then(() => {
+      alert('Mot de passe copié dans le presse-papiers !');
+    }).catch(err => {
+      console.error('Erreur lors de la copie du mot de passe : ', err);
+    });
+  } else {
+    console.error('Mot de passe non défini');
+  }
+}
+
 }

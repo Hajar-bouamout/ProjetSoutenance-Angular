@@ -13,6 +13,7 @@ import { AddNoteComponent } from './add-note/add-note.component';
 import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
+import { ResetPasswordAccountsComponent } from './reset-password-accounts/reset-password-accounts.component';
 
 
 
@@ -38,6 +39,9 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   
   { path: 'reset-password-success', component: ResetPasswordSuccessComponent },
+
+  {path : 'reset-password-accounts', component: ResetPasswordAccountsComponent},
+  {path : 'request-reset-password-accounts', component: ResetPasswordAccountsComponent}
 ];
 
 @NgModule({
