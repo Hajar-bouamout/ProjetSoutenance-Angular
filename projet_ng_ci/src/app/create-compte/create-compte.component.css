@@ -1,4 +1,4 @@
-/* Styles généraux */
+/* Styles généraux
 .container {
     max-width: 600px;
     margin: auto;
@@ -76,4 +76,112 @@
       width: 100%;
     }
   }
+   */
+
+   /* .create-compte-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
   
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .suggested-password {
+    color: green;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+  }
+   */
+
+   .create-compte-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .suggested-password {
+    color: green;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .vulnerability-message {
+    color: blue;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+  }
+  
+/* create-compte.component.css */
+.create-compte-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.copy-message {
+  color: green;
+  margin-top: 10px;
+}

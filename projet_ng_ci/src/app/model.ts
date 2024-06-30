@@ -186,9 +186,9 @@ constructor(token?: string , newPassword?: string){
 
 export class PasswordCheckResponse{
 
-    private isStrong?: Boolean;
-    private isVulnerable?: Boolean;
-    private message?: String;
+    public isStrong?: Boolean;
+    public isVulnerable?: Boolean;
+    public message?: String;
 
     constructor(isStrong?: Boolean, isVulnerable?: Boolean, message?: String){
         this.isStrong = isStrong;
@@ -200,7 +200,7 @@ export class PasswordCheckResponse{
 
 export class PasswordGeneratedResponse{
 
-    private password?: String;
+    public password?: string;
     
     constructor(password?: string){
     

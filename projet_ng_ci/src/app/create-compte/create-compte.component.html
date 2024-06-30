@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h2>Ajouter un Compte</h2>
   <form [formGroup]="createCompteForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -28,4 +28,65 @@
     <button type="submit" class="btn btn-primary" [disabled]="!createCompteForm.valid">Ajouter</button>
   </form>
   <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div> -->
+<div class="create-compte-container">
+  <h2>Créer un Compte</h2>
+  <form [formGroup]="createCompteForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="platformName">Nom de la Plateforme</label>
+      <input id="platformName" formControlName="platformName" class="form-control" type="text">
+      <div *ngIf="createCompteForm.get('platformName')?.invalid && createCompteForm.get('platformName')?.touched" class="error-message">
+        Le nom de la plateforme est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="platformDescription">Description de la Plateforme</label>
+      <textarea id="platformDescription" formControlName="platformDescription" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="creationDate">Date de Création</label>
+      <input id="creationDate" formControlName="creationDate" class="form-control" type="date">
+    </div>
+
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" formControlName="username" class="form-control" type="text">
+      <div *ngIf="createCompteForm.get('username')?.invalid && createCompteForm.get('username')?.touched" class="error-message">
+        Le nom d'utilisateur est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="urlAdress">Adresse URL</label>
+      <input id="urlAdress" formControlName="urlAdress" class="form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de Passe</label>
+      <input id="password" formControlName="password" class="form-control" type="password">
+      <div *ngIf="createCompteForm.get('password')?.invalid && createCompteForm.get('password')?.touched" class="error-message">
+        Le mot de passe doit comporter au moins 12 caractères.
+      </div>
+      <div *ngIf="passwordVulnerabilityMessage" class="vulnerability-message">
+        {{ passwordVulnerabilityMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="suggestedPassword" class="suggested-password">
+        Mot de passe suggéré : {{ suggestedPassword }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="createCompteForm.invalid">Vérifier le Mot de Passe</button>
+    </div>
+
+    <div class="form-group" *ngIf="isPasswordConfirmed">
+      <button type="button" class="btn btn-success" (click)="confirmPassword()">Confirmer et Créer le Compte</button>
+    </div>
+  </form>
 </div>
+
