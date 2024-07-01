@@ -48,6 +48,19 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiUrl}/utilisateur/inscription`, { email, passwordValue, username, birthdate });
   }
 
+
+  checkPasswordStrength(password: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/password/compte/check-strength`, { password });
+  }
+
+  checkPasswordVulnerability(password: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/password/compte/check-vulnerability`, { password });
+  }
+
+  generateStrongPassword(): Observable<any> {
+    // Appel à votre API pour générer un mot de passe fort
+    return this.http.post<any>(`${environment.apiUrl}/password/compte/generate`, {});
+  }
   getIdUtilisateur(): string | undefined {
     if (!this.idUser) {
       this.idUser = localStorage.getItem('idUser') || undefined;
