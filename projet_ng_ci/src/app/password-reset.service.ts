@@ -22,5 +22,11 @@ export class PasswordResetService {
     return this.http.post(`${this.baseUrl}/utilisateur/reset`, {}, { params, responseType: 'text' });
   }
   
+  checkPasswordStrength(newPassword: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/password/compte/check-strength`, { password: newPassword });
+  }
 
+  checkPasswordVulnerability(newPassword: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/password/compte/check-vulnerability`, { password: newPassword });
+  }
 }
