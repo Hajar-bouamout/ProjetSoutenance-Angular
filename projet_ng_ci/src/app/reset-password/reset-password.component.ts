@@ -14,6 +14,7 @@ export class ResetPasswordComponent  implements OnInit {
   error: string = '';
   secureMessage: string = ''; // Message de sécurité du mot de passe
   passwordForm: FormGroup;
+  showPassword: boolean = false; 
 
   constructor(
     private route: ActivatedRoute,
@@ -83,6 +84,10 @@ export class ResetPasswordComponent  implements OnInit {
         this.error = 'Erreur lors de la vérification de la force du mot de passe : ' + error.message;
       }
     );
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
 
