@@ -9,36 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './reset-password.component.css'
 })
 export class ResetPasswordComponent  implements OnInit {
-  // token: string ='';
-  // newPassword: string='';
-  // error: string='';
-
-  // constructor(
-  //   private route: ActivatedRoute,
-  //   private router: Router,
-  //   private passwordResetService: PasswordResetService
-  // ) {}
-
-  // ngOnInit(): void {
-  //   this.route.queryParams.subscribe(params => {
-  //     this.token = params['token'];
-  //   });
-  // }
-
-  // resetPassword(): void {
-  //   this.passwordResetService.resetPassword(this.token, this.newPassword)
-  //     .subscribe(
-  //       () => {
-  //         this.router.navigate(['/reset-password-success']);
-  //       },
-  //       error => {
-  //         this.error = 'Erreur lors de la réinitialisation du mot de passe : ' + error.message;
-  //       }
-  //     );
-  // } token: string = '';
   token: string = '';
   newPassword: string = '';
   error: string = '';
+  secureMessage: string = ''; // Message de sécurité du mot de passe
   passwordForm: FormGroup;
 
   constructor(
@@ -72,7 +46,7 @@ export class ResetPasswordComponent  implements OnInit {
     this.passwordResetService.checkPasswordStrength(this.newPassword).subscribe(
       strengthResponse => {
         console.log('Strength response:', strengthResponse);
-        if (!strengthResponse.strong) { // Notez ici l'accès à la propriété 'strong'
+        if (!strengthResponse.strong) {
           this.error = 'Le mot de passe n\'est pas assez fort.';
           return;
         }
@@ -81,8 +55,9 @@ export class ResetPasswordComponent  implements OnInit {
         this.passwordResetService.checkPasswordVulnerability(this.newPassword).subscribe(
           vulnerabilityResponse => {
             console.log('Vulnerability response:', vulnerabilityResponse);
-            if (vulnerabilityResponse.vulnerable) { // Notez ici l'accès à la propriété 'vulnerable'
+            if (vulnerabilityResponse.vulnerable) {
               this.error = 'Le mot de passe est vulnérable.';
+              this.secureMessage = ''; // Réinitialiser le message de sécurité
               return;
             }
 
@@ -95,6 +70,9 @@ export class ResetPasswordComponent  implements OnInit {
                 this.error = 'Erreur lors de la réinitialisation du mot de passe : ' + error.message;
               }
             );
+
+            // Définir le message de sécurité lorsque le mot de passe est sécurisé
+            this.secureMessage = 'Mot de passe sécurisé !';
           },
           error => {
             this.error = 'Erreur lors de la vérification de la vulnérabilité du mot de passe : ' + error.message;
