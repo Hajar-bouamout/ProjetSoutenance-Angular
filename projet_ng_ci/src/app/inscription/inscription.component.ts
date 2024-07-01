@@ -20,6 +20,7 @@ export class InscriptionComponent implements OnInit{
   isPasswordConfirmed: boolean = false;
   errorMessage: string = '';
   suggestedPassword: string | undefined;
+  passwordVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -78,6 +79,10 @@ export class InscriptionComponent implements OnInit{
     }
   }
 
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
   inscription(): void {
     console.log('Formulaire soumis');
     if (this.inscriptionForm.valid && this.isPasswordConfirmed) {
@@ -114,12 +119,11 @@ export class InscriptionComponent implements OnInit{
   }
 
   copySuggestedPassword(): void {
-    if (this.suggestedPassword) {
-      navigator.clipboard.writeText(this.suggestedPassword).then(() => {
-        console.log('Mot de passe suggéré copié dans le presse-papiers :', this.suggestedPassword);
-      }).catch((err) => {
-        console.error('Erreur lors de la copie du mot de passe suggéré :', err);
-      });
-    }
+    const el = document.createElement('textarea');
+    el.value = this.suggestedPassword || '';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
   }
 }

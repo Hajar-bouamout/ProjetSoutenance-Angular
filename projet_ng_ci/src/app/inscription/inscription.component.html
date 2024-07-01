@@ -13,7 +13,15 @@
     <!-- Champ Mot de passe -->
     <div class="form-group">
       <label for="password">Mot de passe *</label>
-      <input type="password" id="password" formControlName="passwordValue" class="form-control">
+      <div class="input-group">
+        <input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="passwordValue" class="form-control">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+            <span *ngIf="passwordVisible" class="fa fa-eye-slash"></span>
+            <span *ngIf="!passwordVisible" class="fa fa-eye"></span>
+          </button>
+        </div>
+      </div>
       <div *ngIf="inscriptionForm.get('passwordValue')?.invalid && (inscriptionForm.get('passwordValue')?.dirty || inscriptionForm.get('passwordValue')?.touched)" class="text-danger">
         <div *ngIf="inscriptionForm.get('passwordValue')?.errors?.['required']" class="required-message">Le Mot de passe est obligatoire</div>
         <div *ngIf="inscriptionForm.get('passwordValue')?.errors?.['minlength']" class="required-message">Le mot de passe doit contenir au moins 12 caractères</div>
@@ -26,7 +34,15 @@
     <!-- Champ Confirmation du Mot de passe -->
     <div class="form-group">
       <label for="confirmPassword">Confirmation du mot de passe *</label>
-      <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+      <div class="input-group">
+        <input [type]="passwordVisible ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+            <span *ngIf="passwordVisible" class="fa fa-eye-slash"></span>
+            <span *ngIf="!passwordVisible" class="fa fa-eye"></span>
+          </button>
+        </div>
+      </div>
       <div *ngIf="inscriptionForm.hasError('passwordMismatch') && (inscriptionForm.get('confirmPassword')?.dirty || inscriptionForm.get('confirmPassword')?.touched)" class="text-danger">
         Les mots de passe ne correspondent pas
       </div>
