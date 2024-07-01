@@ -14,97 +14,7 @@ import { CompteService } from '../compte.service';
 })
 export class InscriptionComponent implements OnInit{
   
-  // inscriptionForm!: FormGroup;
-  // passwordVulnerabilityMessage: string | undefined;
-  // isPasswordConfirmed: boolean = false;
-  // errorMessage: string = '';
-  // suggestedPassword: string | undefined; // Déclaration de la propriété suggestedPassword
-
-  // constructor(
-  //   private formBuilder: FormBuilder,
-  //   private authService: AuthService,
-  //   private router: Router
-  // ) {
-  //   this.inscriptionForm = this.formBuilder.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     passwordValue: ['', [Validators.required, Validators.minLength(12)]],
-  //     confirmPassword: ['', [Validators.required]],
-  //     username: ['', [Validators.required]],
-  //     birthdate: ['', [Validators.required]]
-  //   }, { validators: this.passwordMatchValidator });
-
-  //   // Vérifiez la vulnérabilité du mot de passe lorsque le mot de passe change
-  //   this.inscriptionForm.get('passwordValue')?.valueChanges.subscribe(() => {
-  //     this.checkPasswordVulnerability();
-  //   });
-  // }
-
-  // passwordMatchValidator(formGroup: FormGroup): Validators | null {
-  //   const password = formGroup.get('passwordValue')?.value;
-  //   const confirmPassword = formGroup.get('confirmPassword')?.value;
-  //   return password === confirmPassword ? null : { passwordMismatch: true };
-  // }
-
-  // checkPasswordVulnerability(): void {
-  //   const password = this.inscriptionForm.get('passwordValue')?.value;
-  //   if (password) {
-  //     const request: PasswordCheckRequest = { password };
-  //     this.authService.checkPasswordVulnerability(password).subscribe({
-  //       next: (response: PasswordCheckResponse) => {
-  //         if (response.isVulnerable) {
-  //           // Appeler une méthode pour générer un mot de passe suggéré
-  //           this.authService.generateStrongPassword().subscribe({
-  //             next: (generatedPasswordResponse) => {
-  //               this.passwordVulnerabilityMessage = 'Votre mot de passe est vulnérable. Mot de passe suggéré : ' + generatedPasswordResponse.password;
-  //               this.isPasswordConfirmed = false;
-  //               this.suggestedPassword = generatedPasswordResponse.password; // Stocker le mot de passe suggéré
-  //             },
-  //             error: (error) => {
-  //               console.error("Erreur de génération du mot de passe fort :", error);
-  //               this.errorMessage = "Erreur de génération du mot de passe fort. Veuillez réessayer plus tard.";
-  //             }
-  //           });
-  //         } else {
-  //           this.passwordVulnerabilityMessage = 'Votre mot de passe n\'est pas vulnérable.';
-  //           this.isPasswordConfirmed = true;
-  //           this.suggestedPassword = undefined; // Réinitialiser le mot de passe suggéré si nécessaire
-  //         }
-  //       },
-  //       error: (err: any) => {
-  //         console.error('Erreur lors de la vérification de la vulnérabilité du mot de passe', err);
-  //         this.passwordVulnerabilityMessage = 'Erreur lors de la vérification de la vulnérabilité du mot de passe.';
-  //         this.isPasswordConfirmed = false;
-  //         this.suggestedPassword = undefined; // Réinitialiser le mot de passe suggéré en cas d'erreur
-  //       }
-  //     });
-  //   }
-  // }
   
-
-  // inscription() {
-  //   console.log('Formulaire soumis');
-  //   if (this.inscriptionForm.valid && this.isPasswordConfirmed) {
-  //     console.log('Formulaire valide, tentative d\'inscription...');
-  //     const { email, passwordValue, username, birthdate } = this.inscriptionForm.value;
-  //     this.authService.register(email, passwordValue, username, birthdate).subscribe({
-  //       next: (response) => {
-  //         console.log('Inscription réussie', response);
-  //         this.router.navigate(['/connexion']);
-  //       },
-  //       error: (error) => {
-  //         if (error.status === 409) {
-  //           this.errorMessage = "L'e-mail existe déjà. Veuillez en choisir un autre.";
-  //         } else {
-  //           this.errorMessage = "Une erreur est survenue. Veuillez réessayer plus tard.";
-  //         }
-  //         console.error("Erreur d'inscription :", error);
-  //       }
-  //     });
-  //   } else {
-  //     this.inscriptionForm.markAllAsTouched();
-  //     console.log('Formulaire invalide, veuillez vérifier les champs');
-  //   }
-  // }
   inscriptionForm!: FormGroup;
   passwordVulnerabilityMessage: string | undefined;
   isPasswordConfirmed: boolean = false;
@@ -200,6 +110,16 @@ export class InscriptionComponent implements OnInit{
     } else {
       this.inscriptionForm.markAllAsTouched();
       console.log('Formulaire invalide, veuillez vérifier les champs');
+    }
+  }
+
+  copySuggestedPassword(): void {
+    if (this.suggestedPassword) {
+      navigator.clipboard.writeText(this.suggestedPassword).then(() => {
+        console.log('Mot de passe suggéré copié dans le presse-papiers :', this.suggestedPassword);
+      }).catch((err) => {
+        console.error('Erreur lors de la copie du mot de passe suggéré :', err);
+      });
     }
   }
 }
