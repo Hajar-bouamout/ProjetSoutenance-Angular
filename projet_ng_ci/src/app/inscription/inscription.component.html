@@ -19,7 +19,8 @@
         <div *ngIf="inscriptionForm.get('passwordValue')?.errors?.['minlength']" class="required-message">Le mot de passe doit contenir au moins 12 caractères</div>
       </div>
       <p *ngIf="passwordVulnerabilityMessage" class="text-danger">{{ passwordVulnerabilityMessage }}</p>
-      <!-- <p *ngIf="suggestedPassword" class="text-warning">Mot de passe suggéré : {{ suggestedPassword }}</p> -->
+      <!-- Affichage du mot de passe suggéré et du bouton pour copier -->
+      
     </div>
 
     <!-- Champ Confirmation du Mot de passe -->
@@ -52,12 +53,14 @@
     <!-- Bouton de soumission -->
     <button type="submit" [disabled]="inscriptionForm.invalid || !isPasswordConfirmed" class="btn btn-primary">S'inscrire</button>
 
-    
     <!-- Message d'erreur global -->
-    <div *ngIf="errorMessage" class="text-danger mt-2">
+    <!-- Seul cet élément affiche soit le message d'erreur, soit le mot de passe suggéré -->
+    <div *ngIf="errorMessage || suggestedPassword" class="text-danger mt-2">
       {{ errorMessage }}
+      <p *ngIf="suggestedPassword" class="text-warning">
+        Mot de passe suggéré : {{ suggestedPassword }}
+        <button type="button" class="btn btn-sm btn-outline-secondary ml-2" (click)="copySuggestedPassword()">Copier</button>
+      </p>
     </div>
   </form>
 </div>
-    
-    
