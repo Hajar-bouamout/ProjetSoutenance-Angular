@@ -201,11 +201,13 @@ export class PasswordCheckResponse{
     public isStrong?: Boolean;
     public isVulnerable?: Boolean;
     public message?: String;
+    
 
     constructor(isStrong?: Boolean, isVulnerable?: Boolean, message?: String){
         this.isStrong = isStrong;
         this.isVulnerable = isVulnerable;
         this.message = message;
+        
     }
 }
 
