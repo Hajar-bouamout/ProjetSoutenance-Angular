@@ -53,7 +53,7 @@ export class ResetPasswordComponent  implements OnInit {
     if (!/[0-9]/.test(password)) {
       this.criteriaMessages.push('Le mot de passe doit contenir au moins un chiffre.');
     }
-    if (!/[^A-Za-z0-9]/.test(password)) {
+    if (!/[!@#$%^&*()-+]/.test(password)) {
       this.criteriaMessages.push('Le mot de passe doit contenir au moins un caractère spécial.');
     }
   }
