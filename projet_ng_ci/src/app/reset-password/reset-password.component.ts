@@ -14,7 +14,8 @@ export class ResetPasswordComponent  implements OnInit {
   error: string = '';
   secureMessage: string = ''; // Message de sécurité du mot de passe
   passwordForm: FormGroup;
-  showPassword: boolean = false; 
+  showPassword: boolean = false;
+  criteriaMessages: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,10 @@ export class ResetPasswordComponent  implements OnInit {
     this.passwordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
+
+    this.passwordForm.get('newPassword')?.valueChanges.subscribe(value => {
+      this.updatePasswordCriteriaMessages(value);
+    });
   }
 
   ngOnInit(): void {
@@ -33,11 +38,36 @@ export class ResetPasswordComponent  implements OnInit {
     });
   }
 
+  updatePasswordCriteriaMessages(password: string): void {
+    this.criteriaMessages = [];
+
+    if (password.length < 8) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins 8 caractères.');
+    }
+    if (!/[A-Z]/.test(password)) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins une majuscule.');
+    }
+    if (!/[a-z]/.test(password)) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins une minuscule.');
+    }
+    if (!/[0-9]/.test(password)) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins un chiffre.');
+    }
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins un caractère spécial.');
+    }
+  }
+
   resetPassword(): void {
     this.error = '';
 
     if (this.passwordForm.invalid) {
-      this.error = 'Le mot de passe doit avoir au moins 8 caractères.';
+      this.error = 'Le mot de passe doit respecter les critères de sécurité.';
+      return;
+    }
+
+    if (this.criteriaMessages.length > 0) {
+      this.error = 'Mot de passe faible Veuillez respecter les règles suivants: ' + this.criteriaMessages.join(', ');
       return;
     }
 
@@ -47,6 +77,7 @@ export class ResetPasswordComponent  implements OnInit {
     this.passwordResetService.checkPasswordStrength(this.newPassword).subscribe(
       strengthResponse => {
         console.log('Strength response:', strengthResponse);
+
         if (!strengthResponse.strong) {
           this.error = 'Le mot de passe n\'est pas assez fort.';
           return;
@@ -90,4 +121,3 @@ export class ResetPasswordComponent  implements OnInit {
     this.showPassword = !this.showPassword;
   }
 }
-
