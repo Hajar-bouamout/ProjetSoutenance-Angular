@@ -198,14 +198,14 @@ constructor(token?: string , newPassword?: string){
 
 export class PasswordCheckResponse{
 
-    public isStrong?: Boolean;
-    public isVulnerable?: Boolean;
+    public strong?: Boolean;
+    public vulnerable?: Boolean;
     public message?: String;
     
 
-    constructor(isStrong?: Boolean, isVulnerable?: Boolean, message?: String){
-        this.isStrong = isStrong;
-        this.isVulnerable = isVulnerable;
+    constructor(strong?: Boolean, vulnerable?: Boolean, message?: String){
+        this.strong = strong;
+        this.vulnerable = vulnerable;
         this.message = message;
         
     }

@@ -54,7 +54,7 @@ export class InscriptionComponent implements OnInit{
       this.authService.checkPasswordVulnerability(password).subscribe({
         next: (response: PasswordCheckResponse) => {
           console.log('Réponse de la vérification de la vulnérabilité du mot de passe:', response);
-          if (response.isVulnerable) {
+          if (response.vulnerable) {
             this.passwordVulnerabilityMessage = 'Votre mot de passe est vulnérable. Veuillez choisir un mot de passe plus sécurisé.';
             this.isPasswordConfirmed = false;
 

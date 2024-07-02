@@ -22,6 +22,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
 import { RequestResetPasswordAccountsComponent } from './request-reset-password-accounts/request-reset-password-accounts.component';
 import { ResetPasswordAccountsComponent } from './reset-password-accounts/reset-password-accounts.component';
+import { CheckPasswordComponent } from './check-password/check-password.component';
 
 
 
@@ -45,6 +46,7 @@ import { ResetPasswordAccountsComponent } from './reset-password-accounts/reset-
     ResetPasswordSuccessComponent,
     RequestResetPasswordAccountsComponent,
     ResetPasswordAccountsComponent,
+    CheckPasswordComponent,
 
     
   ],

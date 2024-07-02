@@ -14,6 +14,7 @@ import { RequestResetPasswordComponent } from './request-reset-password/request-
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordSuccessComponent } from './reset-password-success/reset-password-success.component';
 import { ResetPasswordAccountsComponent } from './reset-password-accounts/reset-password-accounts.component';
+import { CheckPasswordComponent } from './check-password/check-password.component';
 
 
 
@@ -41,7 +42,8 @@ const routes: Routes = [
   { path: 'reset-password-success', component: ResetPasswordSuccessComponent },
 
   {path : 'reset-password-accounts', component: ResetPasswordAccountsComponent},
-  {path : 'request-reset-password-accounts', component: ResetPasswordAccountsComponent}
+  {path : 'request-reset-password-accounts', component: ResetPasswordAccountsComponent},
+  { path: 'test-password', component: CheckPasswordComponent },  // Ajoutez cette route
 ];
 
 @NgModule({
