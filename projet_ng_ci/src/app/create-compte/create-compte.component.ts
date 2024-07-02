@@ -115,7 +115,7 @@ export class CreateCompteComponent {
       const request: PasswordCheckRequest = { password };
       this.compteService.checkPasswordVulnerability(request).subscribe({
         next: (response: PasswordCheckResponse) => {
-          if (response.isVulnerable) {
+          if (response.vulnerable) {
             this.passwordVulnerabilityMessage = 'Votre mot de passe est vulnérable. Veuillez choisir un mot de passe plus sécurisé.';
             this.isPasswordConfirmed = false;
           } else {
