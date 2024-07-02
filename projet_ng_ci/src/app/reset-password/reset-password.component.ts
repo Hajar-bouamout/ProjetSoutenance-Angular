@@ -41,8 +41,8 @@ export class ResetPasswordComponent  implements OnInit {
   updatePasswordCriteriaMessages(password: string): void {
     this.criteriaMessages = [];
 
-    if (password.length < 8) {
-      this.criteriaMessages.push('Le mot de passe doit contenir au moins 8 caractères.');
+    if (password.length < 12) {
+      this.criteriaMessages.push('Le mot de passe doit contenir au moins  12 caractères.');
     }
     if (!/[A-Z]/.test(password)) {
       this.criteriaMessages.push('Le mot de passe doit contenir au moins une majuscule.');
