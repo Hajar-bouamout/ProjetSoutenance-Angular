@@ -38,10 +38,10 @@ on:
 #           path: projet_ng_ci/dist/devops-ng/browser
 
   jobs:
-    
-    build:
 
-    runs-on: ubuntu-latest
+      build:
+
+      runs-on: ubuntu-latest
 
     strategy:
       matrix:
