@@ -24,11 +24,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: projet_ng_ci/package-lock.json
 
       - name: Build de Angular
         run: |
-          cd projet_ng_ci
           npm install
           npm run build
 
