@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-job:
+jobs:
   build:
     name: Build Angular
     runs-on: ubuntu-latest
