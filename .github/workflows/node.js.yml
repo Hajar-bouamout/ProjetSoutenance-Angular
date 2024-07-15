@@ -70,5 +70,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          dockerfile: projet_ng_ci/Dockerfile 
           push: true
           tags: saousane/ajc-soutenance:angular
