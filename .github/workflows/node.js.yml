@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
-          path: dist/projet_ng_ci
+          path: projet_ng_ci/dist/projet_ng_ci
   docker:
     needs: build
     runs-on: ubuntu-latest
