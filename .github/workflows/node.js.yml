@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 20.x
           cache: 'npm'
+          cache-dependency-path: projet_ng_ci/package-lock.json
           
       - name: Build de Angular
         run: |
