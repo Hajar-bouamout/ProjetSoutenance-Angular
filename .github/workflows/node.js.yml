@@ -79,7 +79,7 @@ jobs:
           tags: saousane/ajc-soutenance:angular
   
   deploy:
-    needs: build
+    needs: docker
     runs-on: ubuntu-latest
 
     steps:
