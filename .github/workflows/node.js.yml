@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
-          path: dist/projet_ng_ci
+          path: dist/projet_ng_ci/browser
