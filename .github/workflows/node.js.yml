@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
 on:
@@ -11,23 +8,25 @@ on:
 
 jobs:
   build:
-    name: Build Angular
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 20.x ]
 
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
       
-      - name: Use Node.js 20.x
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: projet_ng_ci/package-lock.json
           
+
       - name: Build de Angular
         run: |
-          cd projet_ng_ci
           npm install
           npm run build
 
@@ -35,40 +34,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
-          path: projet_ng_ci/dist/devops-ng/browser
-
-  docker:
-    name: Build Docker
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
-
-      - name: Récupération des fichiers HTML / CSS / JS
-        uses: actions/download-artifact@v3
-        with:
-          name: app-ng
-          path: projet_ng_ci/dist/devops-ng/browser
-
-      - name: Installation QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Installation Docker BuildX
-        uses: docker/setup-buildx-action@v3
-
-      - name: Connexion au Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_GITHUB }}
-
-      - name: Build de l'image & Push de l'image sur le Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: saousane/ajc-soutenance:angular
- 
-
+          path: dist/projet_ng_ci
