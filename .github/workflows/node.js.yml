@@ -36,38 +36,38 @@ jobs:
           name: app-ng
           path: projet_ng_ci/dist/devops-ng/browser
 
-  docker:
-    name: Build Docker
-    needs: build
-    runs-on: ubuntu-latest
+  # docker:
+  #   name: Build Docker
+  #   needs: build
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Git checkout
+  #       uses: actions/checkout@v4
 
-      - name: Récupération des fichiers HTML / CSS / JS
-        uses: actions/download-artifact@v3
-        with:
-          name: app-ng
-          path: projet_ng_ci/dist/devops-ng/browser
+  #     - name: Récupération des fichiers HTML / CSS / JS
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: app-ng
+  #         path: projet_ng_ci/dist/devops-ng/browser
 
-      - name: Installation QEMU
-        uses: docker/setup-qemu-action@v3
+  #     - name: Installation QEMU
+  #       uses: docker/setup-qemu-action@v3
 
-      - name: Installation Docker BuildX
-        uses: docker/setup-buildx-action@v3
+  #     - name: Installation Docker BuildX
+  #       uses: docker/setup-buildx-action@v3
 
-      - name: Connexion au Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN_GITHUB }}
+  #     - name: Connexion au Docker Hub
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN_GITHUB }}
 
-      - name: Build de l'image & Push de l'image sur le Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: saousane/ajc-soutenance:angular
+  #     - name: Build de l'image & Push de l'image sur le Docker Hub
+  #       uses: docker/build-push-action@v5
+  #       with:
+  #         context: .
+  #         push: true
+  #         tags: saousane/ajc-soutenance:angular
  
 
