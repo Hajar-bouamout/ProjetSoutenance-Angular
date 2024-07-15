@@ -28,6 +28,7 @@ jobs:
 
       - name: Build de Angular
         run: |
+          cd projet_ng_ci
           npm install
           npm run build
 
