@@ -26,6 +26,7 @@ jobs:
           
       - name: Build de Angular
         run: |
+          cd projet_ng_ci
           npm install
           npm run build
 
@@ -33,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
-          path: dist/devops-ng/browser
+          path: projet_ng_ci/dist/devops-ng/browser
 
   docker:
     name: Build Docker
@@ -48,6 +49,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: app-ng
+          path: projet_ng_ci/dist/devops-ng/browser
 
       - name: Installation QEMU
         uses: docker/setup-qemu-action@v3
