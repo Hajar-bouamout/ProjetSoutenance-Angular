@@ -14,29 +14,22 @@ jobs:
         node-version: [20.x]
 
     steps:
-      - name: Git checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Verify package-lock.json
-        run: |
-          if [ ! -f package-lock.json ]; then
-            echo "package-lock.json not found, creating one"
-            npm install --package-lock-only
-          fi
-
       - name: Install dependencies
         run: npm install
 
-      - name: Build de Angular
+      - name: Build Angular
         run: npm run build
 
-      - name: Partage des fichiers HTML / CSS / JS
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
