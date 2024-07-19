@@ -1,0 +1,66 @@
+/* Style global pour la barre de navigation */
+.nav {
+    background: #1a1a2e; /* Couleur de fond de la navbar */
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  /* Style pour les éléments de la nav */
+  .nav-item {
+    margin-right: 15px; /* Espacement entre les éléments */
+  }
+  
+  .nav-link {
+    color: #ffffff; /* Couleur du texte */
+    font-size: 1rem; /* Taille de la police */
+    font-weight: 500; /* Poids de la police */
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none; /* Enlève le souligné des liens */
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Effet au survol des éléments */
+  .nav-link:hover,
+  .nav-link:focus {
+    background: #3a3a6e; /* Couleur de fond au survol */
+    color: #ffffff; /* Couleur du texte au survol */
+  }
+  
+  /* État actif pour l'élément de navigation */
+  .nav-link.active {
+    background: #e94560; /* Couleur de fond pour l'élément actif */
+    color: #ffffff; /* Couleur du texte pour l'élément actif */
+  }
+  
+  /* Style spécifique pour le bouton de déconnexion */
+  .nav-item button.nav-link {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-item button.nav-link:hover {
+    color: #e94560; /* Couleur du texte pour le bouton au survol */
+  }
+  
+  /* Responsivité pour les petits écrans */
+  @media (max-width: 768px) {
+    .nav {
+      padding: 10px;
+    }
+  
+    .nav-item {
+      margin-right: 10px; /* Réduit l'espacement entre les éléments sur les petits écrans */
+    }
+  
+    .nav-link {
+      padding: 8px 12px; /* Réduit le padding pour les petits écrans */
+    }
+  }
+  
