@@ -2,30 +2,33 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
-job:
+jobs:
   build:
-    name: Build Angular
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [ 20.x ]
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
       
-      - name: Use Node.js 20.x
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          
+          cache-dependency-path: projet_ng_ci/package-lock.json
+
       - name: Build de Angular
         run: |
+          cd projet_ng_ci
           npm install
           npm run build
 
@@ -33,12 +36,14 @@ job:
         uses: actions/upload-artifact@v3
         with:
           name: app-ng
-          path: dist/devops-ng/browser
-
+          path: projet_ng_ci/dist/projet_ng_ci
   docker:
-    name: Build Docker
     needs: build
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 20.x ]
 
     steps:
       - name: Git checkout
@@ -48,6 +53,10 @@ job:
         uses: actions/download-artifact@v3
         with:
           name: app-ng
+      - name: List contents of the directory
+        run: |
+          ls -l
+          ls -l projet_ng_ci  
 
       - name: Installation QEMU
         uses: docker/setup-qemu-action@v3
@@ -65,6 +74,32 @@ job:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: projet_ng_ci/Dockerfile 
           push: true
           tags: saousane/ajc-soutenance:angular
- 
+  
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Préparation de la connexion SSH vers notre machine
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+
+      - name: Commandes pour info à exécuter sur la machine distante
+        run: >
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}
+          "
+            # docker stop ajc-angular || true
+            # docker rm ajc-angular || true
+            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN_SERVER }}
+            docker run -d -p 8076:8080 --name ajc-angular --pull=always saousane/ajc-soutenance:angular
+            exit
+          "
+        
+      - name: Nettoyage
+        run: rm -rf ~/.ssh
+      
