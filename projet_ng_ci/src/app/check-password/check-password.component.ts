@@ -91,5 +91,13 @@ export class CheckPasswordComponent {
       });
     }
   }
+
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Mot de passe copié dans le presse-papiers');
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
+  }
 }
 
