@@ -67,13 +67,6 @@
     border: 1px solid #f5c6cb;
   }
   
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-    }
+ 
   
-    button {
-      width: 100%;
-    }
-  }
   

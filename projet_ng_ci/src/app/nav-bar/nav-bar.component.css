@@ -1,6 +1,6 @@
 /* Style global pour la barre de navigation */
 .nav {
-    background: #1a1a2e; /* Couleur de fond de la navbar */
+    background: #0f0fee; /* Couleur de fond de la navbar */
     border-radius: 8px;
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@
   
   /* État actif pour l'élément de navigation */
   .nav-link.active {
-    background: #e94560; /* Couleur de fond pour l'élément actif */
+    background: #cccacb; /* Couleur de fond pour l'élément actif */
     color: #ffffff; /* Couleur du texte pour l'élément actif */
   }
   
@@ -46,7 +46,7 @@
   }
   
   .nav-item button.nav-link:hover {
-    color: #e94560; /* Couleur du texte pour le bouton au survol */
+    color: #e0d9db; /* Couleur du texte pour le bouton au survol */
   }
   
   /* Responsivité pour les petits écrans */
