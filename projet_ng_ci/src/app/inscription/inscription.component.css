@@ -1,78 +1,91 @@
-.container {
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
+.inscription-container {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
+h2 {
+  text-align: center;
   margin-bottom: 20px;
 }
 
-label {
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-}
-
-.input-error {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 5px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 100%;
-  font-size: 1em;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
 }
 
 .form-control {
   width: 100%;
-  padding: 10px;
-  font-size: 1em;
+  padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Ajouté pour garantir que la largeur de l'entrée reste cohérente */
 }
 
-.form-control:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ajouté une ombre plus subtile */
-}
-
-.required-message {
-  font-size: 0.9em;
-  color: red; /* Ajouté pour s'assurer que les messages obligatoires sont en rouge */
-}
-
-.text-danger {
-  color: red;
-}
 .input-group {
   display: flex;
-  align-items: center;
-}
-
-.input-group-text {
-  cursor: pointer;
 }
 
 .input-group .form-control {
   flex: 1;
 }
 
-.input-group .btn {
-  margin-left: -1px;
+.input-group-append {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.strength-message {
+  color: #5bc0de;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.vulnerability-message {
+  color: #d9534f;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.suggested-password {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.btn-outline-secondary {
+  margin-left: 10px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+}
+
+.btn-primary:disabled {
+  background-color: #b0bec5;
+}
+
+input[type="date"] {
+  padding: 8px;
 }

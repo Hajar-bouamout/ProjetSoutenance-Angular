@@ -1,82 +1,73 @@
-<div class="container">
+<div class="inscription-container">
+  <h2>Inscription</h2>
   <form [formGroup]="inscriptionForm" (ngSubmit)="inscription()">
-    <!-- Champ Email -->
     <div class="form-group">
-      <label for="email">Email *</label>
-      <input type="email" id="email" formControlName="email" class="form-control">
-      <div *ngIf="inscriptionForm.get('email')?.invalid && (inscriptionForm.get('email')?.dirty || inscriptionForm.get('email')?.touched)" class="text-danger">
-        <div *ngIf="inscriptionForm.get('email')?.errors?.['required']" class="required-message">Le champ Email est obligatoire</div>
-        <div *ngIf="inscriptionForm.get('email')?.errors?.['email']" class="required-message">Email invalide</div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" class="form-control" type="email">
+      <div *ngIf="inscriptionForm.get('email')?.invalid && inscriptionForm.get('email')?.touched" class="error-message">
+        Email requis et doit être valide.
+      </div>
+      <!-- Afficher l'erreur d'existence d'email ici -->
+      <!-- Afficher l'erreur générique ici -->
+      <div *ngIf="errorMessage && !errorMessage.includes('L\'email existe déjà')" class="error-message">
+        {{ errorMessage }}
       </div>
     </div>
 
-    <!-- Champ Mot de passe -->
     <div class="form-group">
-      <label for="password">Mot de passe *</label>
+      <label for="passwordValue">Mot de Passe</label>
       <div class="input-group">
-        <input [type]="passwordVisible ? 'text' : 'password'" id="password" formControlName="passwordValue" class="form-control">
+        <input id="passwordValue" formControlName="passwordValue" class="form-control" [type]="passwordVisible ? 'text' : 'password'">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
-            <span *ngIf="passwordVisible" class="fa fa-eye-slash"></span>
-            <span *ngIf="!passwordVisible" class="fa fa-eye"></span>
+          <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+            <i class="fa" [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
           </button>
         </div>
       </div>
-      <div *ngIf="inscriptionForm.get('passwordValue')?.invalid && (inscriptionForm.get('passwordValue')?.dirty || inscriptionForm.get('passwordValue')?.touched)" class="text-danger">
-        <div *ngIf="inscriptionForm.get('passwordValue')?.errors?.['required']" class="required-message">Le Mot de passe est obligatoire</div>
-        <div *ngIf="inscriptionForm.get('passwordValue')?.errors?.['minlength']" class="required-message">Le mot de passe doit contenir au moins 12 caractères</div>
+      <div *ngIf="inscriptionForm.get('passwordValue')?.invalid && inscriptionForm.get('passwordValue')?.touched" class="error-message">
+        Le mot de passe doit comporter au moins 12 caractères.
       </div>
-      <p *ngIf="passwordVulnerabilityMessage" class="text-danger">{{ passwordVulnerabilityMessage }}</p>
-      <!-- Affichage du mot de passe suggéré et du bouton pour copier -->
+      <div *ngIf="passwordStrengthMessage" class="strength-message">
+        {{ passwordStrengthMessage }}
+      </div>
+      <div *ngIf="passwordVulnerabilityMessage" class="vulnerability-message">
+        {{ passwordVulnerabilityMessage }}
+      </div>
       
-    </div>
-
-    <!-- Champ Confirmation du Mot de passe -->
-    <div class="form-group">
-      <label for="confirmPassword">Confirmation du mot de passe *</label>
-      <div class="input-group">
-        <input [type]="passwordVisible ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" class="form-control">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
-            <span *ngIf="passwordVisible" class="fa fa-eye-slash"></span>
-            <span *ngIf="!passwordVisible" class="fa fa-eye"></span>
-          </button>
-        </div>
-      </div>
-      <div *ngIf="inscriptionForm.hasError('passwordMismatch') && (inscriptionForm.get('confirmPassword')?.dirty || inscriptionForm.get('confirmPassword')?.touched)" class="text-danger">
-        Les mots de passe ne correspondent pas
-      </div>
-    </div>
-
-    <!-- Champ Nom d'utilisateur -->
-    <div class="form-group">
-      <label for="username">Nom d'utilisateur *</label>
-      <input type="text" id="username" formControlName="username" class="form-control">
-      <div *ngIf="inscriptionForm.get('username')?.invalid && (inscriptionForm.get('username')?.dirty || inscriptionForm.get('username')?.touched)" class="text-danger">
-        <div *ngIf="inscriptionForm.get('username')?.errors?.['required']" class="required-message">Le Nom d'utilisateur est obligatoire</div>
-      </div>
-    </div>
-
-    <!-- Champ Date de naissance -->
-    <div class="form-group">
-      <label for="birthdate">Date de naissance *</label>
-      <input type="date" id="birthdate" formControlName="birthdate" class="form-control">
-      <div *ngIf="inscriptionForm.get('birthdate')?.invalid && (inscriptionForm.get('birthdate')?.dirty || inscriptionForm.get('birthdate')?.touched)" class="text-danger">
-        <div *ngIf="inscriptionForm.get('birthdate')?.errors?.['required']" class="required-message">La Date de naissance est obligatoire</div>
-      </div>
-    </div>
-
-    <!-- Bouton de soumission -->
-    <button type="submit" [disabled]="inscriptionForm.invalid || !isPasswordConfirmed" class="btn btn-primary">S'inscrire</button>
-
-    <!-- Message d'erreur global -->
-    <!-- Seul cet élément affiche soit le message d'erreur, soit le mot de passe suggéré -->
-    <div *ngIf="errorMessage || suggestedPassword" class="text-danger mt-2">
-      {{ errorMessage }}
-      <p *ngIf="suggestedPassword" class="text-warning">
+      <div *ngIf="suggestedPassword" class="suggested-password">
         Mot de passe suggéré : {{ suggestedPassword }}
-        <button type="button" class="btn btn-sm btn-outline-secondary ml-2" (click)="copySuggestedPassword()">Copier</button>
-      </p>
+        <button type="button" class="btn btn-outline-secondary" (click)="copySuggestedPassword()">
+          <i class="fa fa-clipboard"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirmer le Mot de Passe</label>
+      <input id="confirmPassword" formControlName="confirmPassword" class="form-control" type="password">
+      <div *ngIf="inscriptionForm.hasError('passwordMismatch') && inscriptionForm.get('confirmPassword')?.touched" class="error-message">
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Nom d'utilisateur</label>
+      <input id="username" formControlName="username" class="form-control" type="text">
+      <div *ngIf="inscriptionForm.get('username')?.invalid && inscriptionForm.get('username')?.touched" class="error-message">
+        Le nom d'utilisateur est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="birthdate">Date de Naissance</label>
+      <input id="birthdate" formControlName="birthdate" class="form-control" type="date">
+      <div *ngIf="inscriptionForm.get('birthdate')?.invalid && inscriptionForm.get('birthdate')?.touched" class="error-message">
+        La date de naissance est requise.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="inscriptionForm.invalid || !isPasswordConfirmed || isCheckingPassword">S'inscrire</button>
     </div>
   </form>
 </div>
