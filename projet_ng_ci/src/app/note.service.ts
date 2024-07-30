@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Note } from './model';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
@@ -12,7 +12,7 @@ export class NoteService {
 
 
   private apiUrl = environment.apiUrl;
-
+  private baseUrl = 'http://localhost:8080/api/note';
   constructor(private http: HttpClient) {}
 
   getNotesByUser(idUser: string): Observable<Note[]> {
@@ -65,8 +65,11 @@ export class NoteService {
       })
     );
   }
+// Déchiffrer le contenu de la note
 
-
-}
+decryptNoteContent(noteId: string): Observable<any> {
+  const params = new HttpParams().set('noteId', noteId);
+  return this.http.post(`${this.baseUrl}/decryptNote`, {}, { params, responseType: 'text' });
+}}
 
 

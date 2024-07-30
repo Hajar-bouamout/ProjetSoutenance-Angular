@@ -57,17 +57,23 @@ export class Note {
     public dateModif?: Date;
     public contenu?: String;
     public idUser?: string;
-     public publicKey?: string;
+    public publicKey?: string;
+    public encryptedContent?: string;
+    public decryptedContent?: string;
+    public showContent?: boolean;
     
-    constructor(id?: string, nom?: string, description?: string, dateAjout?: Date,  dateModif?: Date , contenu?: string ,idUser?: string ,publicKey?: string ) {
+    constructor(id?: string, nom?: string, description?: string, dateAjout?: Date,  dateModif?: Date , contenu?: string ,idUser?: string ,publicKey?: string, encryptedContent?: string, decryptedContent?: string, showContent?: boolean) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.dateAjout = dateAjout;
         this.dateModif = dateModif;
-         this.contenu= contenu;
-         this.publicKey=publicKey;
-         this.idUser =idUser;
+        this.contenu= contenu;
+        this.publicKey=publicKey;
+        this.idUser =idUser;
+        this.encryptedContent=encryptedContent;
+        this.decryptedContent=decryptedContent;
+        this.showContent=showContent;
 
     }
 

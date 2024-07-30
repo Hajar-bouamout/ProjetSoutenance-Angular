@@ -1,49 +1,50 @@
-<style>
-  .table td {
-    max-width: 300px; /* Limite la largeur du texte à 300 pixels */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Ajoute des points de suspension (...) si le texte dépasse */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-  }
-</style>
-
 <div class="container mt-4">
-  <div class="row mb-3">
-    <div class="col">
-      <button class="btn btn-success" (click)="navigateToAddNote()">Ajouter une nouvelle note</button>
+  <h2 class="text-center mb-4">Liste des notes de l'utilisateur</h2>
+
+  <div class="note-actions mb-3 text-center">
+    <button (click)="navigateToAddNote()" class="create-note-button">
+      <i class="bi bi-plus-circle"></i> Ajouter une nouvelle note
+    </button>
+  </div>
+
+  <div class="note-list row">
+    <div class="note-card col-md-4 mb-4" *ngFor="let note of notes">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ note.nom }}</h3>
+          <p><strong>Description:</strong> {{ note.description }}</p>
+          <p><strong>Date d'ajout:</strong> {{ note.dateAjout | date }}</p>
+          <p><strong>Date de modification:</strong> {{ note.dateModif | date }}</p>
+          <p>
+            <strong>Contenu:</strong>
+            <span *ngIf="note.showContent">{{ note.decryptedContent || 'Contenu non disponible' }}</span>
+            <button (click)="showNoteContent(note)" *ngIf="!note.showContent" class="btn show-hide-button">
+              <i class="bi bi-eye"></i> 
+            </button>
+            <button (click)="showNoteContent(note)" *ngIf="note.showContent" class="btn show-hide-button">
+              <i class="bi bi-eye-slash"></i> 
+            </button>
+            <button (click)="copyContent(note.decryptedContent || '')" *ngIf="note.decryptedContent" class="btn copy-button">
+              <i class="bi bi-clipboard"></i> 
+            </button>
+          </p>
+        </div>
+        <div class="card-footer note-actions">
+          <button (click)="editNote(note)" class="edit-note-button">
+            <i class="bi bi-pencil"></i> Modifier
+          </button>
+          <button (click)="deleteNote(note)" class="delete-note-button">
+            <i class="bi bi-trash"></i> Supprimer
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <table class="table table-striped table-hover">
-        <thead class="thead-custom">
-          <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Date d'ajout</th>
-            <th>Date de modification</th>
-            <th>Contenu</th>
-            <!-- <th>Clé publique</th> -->
-            <th>Actions</th> 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let note of notes">
-            <td>{{ note.id }}</td>
-            <td>{{ note.nom }}</td>
-            <td>{{ note.description }}</td>
-            <td>{{ note.dateAjout }}</td>
-            <td>{{ note.dateModif }}</td>
-            <td>{{ note.contenu }}</td>
-            <!-- <td>{{ note.publicKey }}</td> -->
-            <td>
-              <button class="btn btn-primary btn-sm" (click)="editNote(note)">Modifier</button>  
-              <button class="btn btn-danger btn-sm" (click)="deleteNote(note)">Supprimer</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+</div>
+
+<div *ngIf="notes.length === 0" class="container mt-4 text-center">
+  <p>Aucune note trouvée pour cet utilisateur.</p>
+  <button (click)="navigateToAddNote()" class="create-note-button">
+    <i class="bi bi-plus-circle"></i> Ajouter une nouvelle note
+  </button>
 </div>

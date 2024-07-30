@@ -39,11 +39,33 @@ export class EditnoteComponent implements OnInit  {
     }
   }
 
+  // loadNote(): void {
+  //   if (this.id) {
+  //     this.noteService.getNoteById(this.id).subscribe(
+  //       (note) => {
+  //         this.note = note;
+  //       },
+  //       (error) => {
+  //         console.error('Erreur lors du chargement de la note', error);
+  //       }
+  //     );
+  //   }
+  // }
+
   loadNote(): void {
     if (this.id) {
       this.noteService.getNoteById(this.id).subscribe(
         (note) => {
           this.note = note;
+          // Déchiffrer le contenu si nécessaire
+          this.noteService.decryptNoteContent(this.id).subscribe(
+            decryptedContent => {
+              this.note.contenu = decryptedContent;
+            },
+            error => {
+              console.error('Erreur lors du déchiffrement du contenu de la note', error);
+            }
+          );
         },
         (error) => {
           console.error('Erreur lors du chargement de la note', error);
@@ -51,7 +73,6 @@ export class EditnoteComponent implements OnInit  {
       );
     }
   }
-
 
 
   updatePartiel(): void {

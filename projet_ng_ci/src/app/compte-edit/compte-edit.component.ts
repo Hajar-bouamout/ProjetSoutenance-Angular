@@ -47,7 +47,7 @@ export class CompteEditComponent implements OnInit {
       }
     );
   }
-
+  
   onSubmit(): void {
     if (this.editCompteForm.valid) {
       const updateRequest: CompteResponse = this.editCompteForm.value;
@@ -62,4 +62,5 @@ export class CompteEditComponent implements OnInit {
       );
     }
   }
+
 }

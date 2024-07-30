@@ -1,130 +1,175 @@
+/* Style commun pour les deux listes */
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f9fafb;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f9;
   color: #333;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .container {
-  margin: 40px auto;
-  max-width: 90%;
   padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
 }
 
-.mt-4 {
-  margin-top: 1.5rem !important;
-}
-
-.mb-3 {
-  margin-bottom: 1rem !important;
-}
-
-.btn {
-  padding: 10px 20px;
+/* Style des boutons d'action */
+.create-button, .create-note-button {
+  background-color: #2980b9;
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
+  border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-success {
-  background-color: #1abc9c;
-  color: white;
-}
-
-.btn-success:hover {
-  background-color: #16a085;
-  transform: translateY(-2px);
-}
-
-.btn-primary {
+.create-button:hover, .create-note-button:hover {
   background-color: #3498db;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #2980b9;
   transform: translateY(-2px);
 }
 
-.btn-danger {
+.edit-button, .edit-note-button {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-button:hover, .edit-note-button:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+}
+
+.delete-button, .delete-note-button {
   background-color: #e74c3c;
   color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-danger:hover {
+.delete-button:hover, .delete-note-button:hover {
   background-color: #c0392b;
   transform: translateY(-2px);
 }
 
-.table {
+/* Style des cartes */
+.note-card, .compte-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
   width: 100%;
-  margin-bottom: 1rem;
-  color: #212529;
-  border-collapse: collapse;
-  table-layout: auto; /* Assure une répartition équilibrée des colonnes */
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.03);
+.note-card:hover, .compte-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.table-hover tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+.note-info h3, .compte-info h3 {
+  margin: 0;
+  color: #2c3e50;
 }
 
-.thead-custom {
-  background-color: #34495e;
+.note-info p, .compte-info p {
+  color: #555;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.note-info a, .compte-info a {
+  color: #2980b9;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.note-info a:hover, .compte-info a:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+/* Style pour les boutons spécifiques dans les actions */
+.show-hide-button {
+  background-color: #3498db;
   color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.thead-custom th {
-  border: 1px solid #34495e;
-  padding: 12px;
+.show-hide-button:hover {
+  background-color: #2980b9;
 }
 
-.table td {
-  max-width: 300px; /* Limite la largeur du texte à 300 pixels */
-  overflow: hidden;
-  text-overflow: ellipsis; /* Ajoute des points de suspension (...) si le texte dépasse */
-  white-space: nowrap; /* Empêche le texte de passer à la ligne */
-  padding: 12px;
-  border-top: 1px solid #dee2e6;
+.copy-button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.table th, .table td {
-  text-align: left;
-  vertical-align: middle;
+.copy-button:hover {
+  background-color: #2ecc71;
 }
 
-.table th {
-  font-weight: bold;
+/* Style des actions */
+.note-actions, .compte-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-.table tr {
-  transition: background-color 0.3s ease;
+.note-actions button, .compte-actions button {
+  flex: 1;
+  margin: 0 5px;
 }
 
-.table td button {
-  margin-right: 5px;
+p {
+  margin: 10px 0;
 }
 
-.table th, .table td {
-  padding: 12px 15px;
-  text-align: left;
-  vertical-align: middle;
-  border-top: 1px solid #dee2e6;
+p > button {
+  margin-left: 5px;
+}
+
+.note-list, .compte-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10px;
 }

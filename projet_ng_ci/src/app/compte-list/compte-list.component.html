@@ -50,7 +50,7 @@
         <p><strong>Adresse URL:</strong> <a href="{{ compte.urlAdress }}" target="_blank">{{ compte.urlAdress }}</a></p>
         <p><strong>Nom d'utilisateur:</strong> {{ compte.username }}</p>
         <p><strong>ID:</strong> {{ compte.id }}</p>
-        <p><strong>Email:</strong> {{ compte.email }}</p>
+        <!-- <p><strong>Email:</strong> {{ compte.email }}</p> -->
         <p>
           <strong>Mot de passe:</strong>
           <span *ngIf="compte.showPassword">{{ compte.decryptedPassword }}</span>
